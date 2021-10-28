@@ -1,0 +1,1235 @@
+1) CHARACTER SUM:
+Consider All lowercase Alphabets of the English language. Here we consider each alphabet from a to z to have a certain weight. 
+The weight of the alphabet a is considered to be 1, b to be 2, c to be 3 and so on until z has a weight of 26. 
+s = input()
+summ = 0
+for c in s:
+    summ += (ord(c)-ord('a')+1)
+print(summ)
+
+2) ANKIT SET THEORY:
+Ankit has a set of numbers and has recently studied set theory. He has created a power set of this set and is writing a program to compute 
+sum of all elements of all the subsets in power set. 
+Power set of a set S is defined as set of all possible subsets of S.
+Set S consist of all the number from 1 to N.
+You need to calculate this sum for a given n.
+
+for _ in range(int(input())):
+    n = int(input())
+    occur = 2**(n-1) # No of times each no occurs
+    summN = n*(n+1)//2 # Sum of 1 to N
+    print(occur*summN)
+
+3) STRING SAME
+You are given two strings. You have to check if the strings are permutations of each other and output "YES" or "NO" accordingly
+
+from collections import Counter as C
+print("YES" if C(input()) == C(input()) else "NO")
+
+4) FROG coordinate plane
+There is a frog initially placed at the origin of the coordinate plane. In exactly 1 second, the frog can either move up 1 unit, 
+move right 1 unit, or stay still. In other words, from position (x,y), the frog can spend 1 second to move to:
+(x+1,y)
+(x,y+1)
+(x,y)
+After T seconds, a villager who sees the frog reports that the frog lies on or inside a square of side-length s with coordinates 
+(x,y),(x+s,y) ,(x,y+s) ,(x+s,y+s). Calculate how many points with integer coordinates on or inside this square could 
+be the frog's position after exactly T seconds.
+
+5) ANKIT MAZE COMMAND 
+
+Ankit is in maze. The command center sent him a string which decodes to come out from the maze. He is initially at (0, 0). 
+String contains L, R, U, D denoting left, right, up and down. In each command he will traverse 1 unit distance in the respective direction.
+For example if he is at (2, 0) and the command is L he will go to (1, 0).
+
+path = input()
+start = [0,0]
+for direction in path:
+    if direction == "L":
+        start[0] -= 1
+    elif direction == "R":
+        start[0] += 1
+    elif direction == "U":
+        start[1] += 1
+    elif direction == "D":
+        start[1] -= 1
+print(*start)
+
+6) FIBBONACI
+def Fibonacci(n):
+	if n<0:
+		print("Incorrect input")
+	# First Fibonacci number is 0
+	elif n==0:
+		return 0
+	# Second Fibonacci number is 1
+	elif n==1:
+		return 1
+	else:
+		return Fibonacci(n-1)+Fibonacci(n-2)
+print(Fibonacci(9))
+
+
+7) FRIEND FINDER
+Goki recently had a breakup, so he wants to have some more friends in his life. Goki has N people who he can be friends with, 
+so he decides to choose among them according to their skills set Yi(1<=i<=n). He wants atleast X skills in his friends.
+Help Goki find his friends.
+INPUT
+First line of the input contains an integer N denoting the number of people.
+Next line contains a single integer X - denoting the minimum skill required to be Goki's friend. 
+Next n lines contain one integer Y - denoting the skill of ith person.
+OUTPUT
+For each person print if he can be friend with Goki. 'YES' (without quotes) if he can be friends with Goki else 'NO' (without quotes)
+
+8) NUMBER CONSTRAINT CHECK
+
+You are given a number N. Determine the number of positive even integers that are smaller than or equal to it and are not a multiple of 4.
+Input Format
+The first line contains a single integer T, denoting the number of test cases.
+Each of the next T lines contains a single integer, denoting the value of N.
+Output Format
+Print T lines, where the i-th line contains the answer to the i-th test case.
+
+Explanation
+For N=3, only 2 follows the given conditions, so answer is 1.
+For N=11, numbers 2, 6 and 10 follows the given conditions, so answer is 3.
+"""
+for _ in range(int(input())):
+    n = int(input())
+    print((n//2)-(n//4))
+	
+9) STUDENT PROFESSOR
+Students have become secret admirers of SEGP. They find the course exciting and the professors amusing. 
+After a superb Mid Semester examination its now time for the results. The TAs have released the 
+marks of students in the form of an array, where arr[i] represents the marks of the ith student.
+Since you are a curious kid, you want to find all the marks that are not smaller than those on its 
+right side in the array.
+
+Input Format
+The first line of input will contain a single integer n denoting the number of students.
+The next line will contain n space separated integers representing the marks of students.
+Output Format
+Output all the integers separated in the array from left to right that are not smaller than 
+those on its right side.
+
+def maxMarks(marks):
+    res = []
+    maxMark = -1
+    for mark in marks[::-1]:
+        if mark >= maxMark:
+            maxMark = mark
+            res.append(mark)
+    return res[::-1]
+
+n = int(input())
+marks = list(map(int,input().split()))
+print(*maxMarks(marks))
+
+10) PRIME NUMBER ASSIGNMENT
+
+Aishwarya is a mathematics student at the Department of Mathematics and Computing, California. Her teacher recently gave her an intriguing assignment 
+with only a single question. The question was to find out the minimum number of single digit prime numbers which when summed equals a given number X.
+Input:
+The first line contains T denoting the number of test cases. Each of the next T lines contains a single integer X.
+Output:
+Print the minimum number required. If it is not possible to obtain X using single digit prime numbers, output -1.
+
+def check(n,prime):
+    if n - prime < 0:
+        return False
+    return True
+    
+for i in range(int(input())):
+    n = int(input())
+    if n > 7:
+        dp = [float('inf')]*(n+1) 
+    else:
+        dp = [float('inf')]*(8) 
+    dp[2] = dp[3] = dp[5] = dp[7] = 1
+    for i in range(1,n+1):
+        if check(i,2):
+            dp[i] = min(dp[i],1+dp[i-2])
+        if check(i,3):
+            dp[i] = min(dp[i],1+dp[i-3])
+        if check(i,5):
+            dp[i] = min(dp[i],1+dp[i-5])
+        if check(i,7):
+            dp[i] = min(dp[i],1+dp[i-7])
+    
+    print(-1 if dp[n] == float('inf') else dp[n])
+	
+11) NAVIGATION maximum
+
+Napoleon choosed a city for Advertising his company's product. There are  streets in that city. Each day he travels one street. There are  buildings in a street which are located at points . Each building has some height(Say  meters). Napoleon stands at point . His height is . Now Napoleon starts communicating with the people of each building. He can communicate with people of a particular building only if he can see that building. If he succeed to communicate with any particular building then his boss gives him . i.e. if he communicates with  buildings in a day, then he will earn . Now Napoleon wants to know his maximum Earning for each day.
+Note: All the points are on Strainght Line and Napoleon is always standing at point 0.
+Input:
+First line of input contains an integer , denoting no of streets in the city.
+Details for each street is described in next two lines.
+First line contains two integers  and  denoting no of buildings in the Street and earning on communicating with a building.
+Second line contains  integers, denoting height of  building.
+Output:
+Print  Lines, each containing maximum earning in  street.
+
+def rupeesEarned(buildings,cost):
+    height = -1
+    count = 0
+    for building in buildings:
+        if building > height:
+            count += 1
+            height = building
+    return count*cost
+    
+for _ in range(int(input())):
+    n,r = map(int,input().split())
+    buildings = list(map(int,input().split()))
+    print(rupeesEarned(buildings,r))
+	
+12) MEMORY GAMES
+
+Arijit is a brilliant boy. He likes memory games. He likes to participate alone but this time 
+he has to have a partner. So he chooses you.
+In this Game , your team will be shown N numbers for few minutes . You will have to memorize 
+these numbers.
+Now, the questioner will ask you Q queries, in each query He will give you a number , and you 
+have to tell him the total number of occurrences of that number in the array of numbers shown to your team . If the number is not present , then you will have to say “NOT PRESENT” (without quotes).
+
+def countNo(arr):
+    count = {}
+    for n in arr:
+        if n in count:
+            count[n] += 1
+        else:
+            count[n] = 1
+    return count
+    
+n = int(input())
+arr = list(map(int,input().split()))
+count = countNo(arr)
+for _ in range(int(input())):
+    no = int(input())
+    if no in count:
+        print(count[no])
+    else:
+        print("NOT PRESENT")
+		
+13) MOST FREQUENT
+
+Mr. Bournville loves programming and he likes to face new programming challenges. After completing many challenges 
+he has now given you one challenge which is one of his favourites. He has given you a list of N random integers 
+and he wants you to find the integer which has the maximum frequency in the given list.
+Mr. Bournville already has a solution for this but he is not satisfied with his solution. 
+He wants you to write a shortest possible code for this task. In case Frequency of two numbers is same print 
+the smaller one
+Input:
+First line of input contains N, number of integers.
+Second line will contains N spaces separated integers.
+Output:
+Print the most frequent integer.
+
+n = int(input())
+arr = list(map(int,input().split()))
+d = {}
+maxx, maxItem = 0, None
+for i in arr:
+    if i not in d:
+        d[i] = 1
+    else:
+        d[i] += 1
+    if d[i] >= maxx:
+        if d[i] != maxx or i < maxItem:
+            maxx = d[i]
+            maxItem = i
+print(maxItem)
+
+14) NUMBERS OF INTEREST
+
+After solving Reese's first problem Harold thought he had proven himself. But Reese wasn't convinced so he gave Harold another query. 
+He told Harold to find the nth term of the sequence given by the equation.
+a[n]=( f[n] + g[n] ) % n
+where, f[n] = f[n-1] + x(n) ; where x(n) = smallest prime factor of n.
+and g[n] = g[n-1] + y(n) ; where y(n) = sum of all natural numbers p less than n which follow that n % p == 0
+Given : x(0) = x(1) = y(0) = y(1) = 0
+Input:
+The first line contains the number of test cases T. Each test case contains a single integer n.
+Output:
+The value of a[n] for each case in a separate line.
+
+def smallestPrimeFactor(n):
+    if n % 2 == 0:
+        return 2
+    i = 3
+    while i * i <= n:
+        if n % i == 0:
+            return i
+        i += 2
+    return n
+
+def divisorsSum(n):
+    if n == 1:
+        return 0
+    result = 1
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            result += i
+            if n // i != i:
+                result += n//i
+    return result
+
+testCases = []
+maxNo = 0
+fValues = {0:0, 1:0}
+gValues = {0:0, 1:0}
+for _ in range(int(input())):
+    n = int(input())
+    testCases.append(n)
+    if n > maxNo:
+        maxNo = n
+for n in range(2,maxNo+1):
+    fValues[n] = fValues[n-1] + smallestPrimeFactor(n)
+    gValues[n] = gValues[n-1] + divisorsSum(n)
+
+for t in testCases:
+    print((fValues[t]+gValues[t])%t)
+	
+15) TIME LAND
+
+In a mystical TimeLand, a person's health and wealth is measured in terms of time(seconds) left. Suppose a person there has 24x60x60 = 86400 seconds left, 
+then he would live for another 1 day. A person dies when his time left becomes 0. Some time-amount can be borrowed from other person, or time-banks. 
+Some time-amount can also be lend to another person, or can be used to buy stuffs.
+Our hero Mr X, is in critical condition, has very less time left.
+Today's the inaugural day of a new time-bank. So they are giving away free time-amount worth 1000 years.
+Bank released N slips, A[1], A[2], .... A[N]. Each slip has a time-amount(can be +ve as well as -ve).
+A person can pick any number of slips(even none, or all of them, or some of them) out of the N slips. But bank introduced a restriction, 
+they announced one more number K. Restriction is that, if a person picks a slip A[i], then the next slip that he can choose to pick will be A[i+K+1]. 
+It means there should be a difference of atleast K between the indices of slips picked.
+Now slip(s) should be picked in such a way that their sum results in maximum positive time-amount sum possible with the given restriction.
+If you predict the maximum positive sum possible, then you win.
+Mr X has asked for your help. Help him win the lottery, and make it quick!
+Input Format:
+First line of the test file contains single number T, the number of test cases to follow.
+Each test case consists of two lines.
+First line contains two numbers N and K , separated by a space. Second line contains the N numbers A[1], A[2] ..... A[N] separated by space.
+Output Format:
+For every test case, output in a single line the maximum positive sum possible, that is output for the case.
+
+for _ in range(int(input())):
+    n,k = map(int,input().split())
+    arr = list(map(int,input().split()))
+    dp = [0 if i>k or arr[i]<0 else arr[i] for i in range(n)]
+    maxx = -1
+    for i in range(k+1,n):
+        if dp[i-k-1] > maxx:
+            maxx = dp[i-k-1]
+        dp[i] = arr[i] + maxx if arr[i] > 0 else maxx
+    print(max(dp))
+
+16) ONE STRING NO TROUBLE
+
+A string s is called a good string if and only if two consecutive letters are not the same. For example, abcab and cda  are good 
+while abaa and accba are not.
+You are given a string s. Among all the good substrings of s ,print the size of the longest one.
+Input format
+A single line that contains a string s.
+Output format
+Print an integer that denotes the size of the longest good substring of s.
+SAMPLE INPUT 
+ab
+SAMPLE OUTPUT 
+2
+Explanation
+The complete string is good so the answer is 2.
+
+s = input()
+length = maxLength = 1
+for i in range(1,len(s)):
+    if s[i] == s[i-1]:
+        length = 1
+    else:
+        length += 1
+    if maxLength < length:
+        maxLength = length
+print(maxLength)
+
+17) PILE OF COINS
+
+Ashish and Jeel are playing a game. They are given two piles of coins with P and Q coins respectively. 
+They take alterate turns. During each turn, the player can choose one pile and split it into two non-zero parts and 
+discard the other pile that is not choosen. The discarded pile cannot be used further in the game. 
+A player loses if he cannot make a move. Both the players play the game optimally.
+You are given P and Q. Determine who wins the game if Ashish plays first.
+Input format
+First line: An integer T denoting the number of test cases
+Next T lines: Two integers P and Q.
+Output format
+For each test case, print the winner of the game "Ashish" or "Jeel" (without quotes).
+Answer for each test case should come in a new line.
+SAMPLE INPUT 
+3
+1 1
+1 2
+2 2
+SAMPLE OUTPUT 
+Jeel
+Ashish
+Ashish
+Explanation
+In the first case, Ashish has no possible moves because both the piles are of size 1, hence Jeel wins.
+In the other 2 cases, Ashish can take the pile of size 2 and split it into (1, 1) and discard the other pile. 
+Jeel cannot make any move on (1, 1) piles, so Ashish wins.
+
+for _ in range(int(input())):
+    p,q = map(int,input().split())
+    if p % 2 !=0 and q % 2 != 0:
+        print("Jeel")
+    else:
+        print("Ashish")
+		
+18) POINTS IN A RECTANGLE
+
+Given a rectangle with sides parallel to X and Y axis and N points in X-Y co-ordinates, 
+print the total number of points that lie strictly inside the rectangle.
+Input
+The first line consist of a single integer T - the number of test cases.
+For every test case the input is as follows -
+First Line consists of x1 y1 x2 y2 - (x1, y1) and (x2, y2) are opposite 
+corner points of the rectangle.
+Next line consists of N
+N lines follows - each line containing - X Y coordinate of the point.
+Output
+Output in T lines, the answer to each test case.
+
+n = int(input())
+while n > 0:
+     x1,y1,x2,y2 = map(int,input().split())
+     maxx=max(x1,x2)
+     minx=min(x1,x2)
+     maxy=max(y1,y2)
+     miny=min(y1,y2)
+     count=0
+     cases = int(input())
+     while cases > 0:
+         a,b = map(int,input().split())
+         if ((a>minx) and (a<maxx) and (b<maxy) and (b>miny)):
+             count += 1
+         cases -= 1
+     print(count)
+     n -= 1
+	 
+19) PROJECT TEAM
+
+A Professor of Physics gave projects to the students of his class. The students have to form a team of two for doing the project. 
+The professor left the students to decide the teams. The number of students in a class will be even.
+Each student has a knowledge level. It tells how much knowledge each student has. The knowledge level of a team is the sum of the knowledge 
+levels of both the students.
+The students decide to form groups such that the difference between the team with highest knowledge and the one with lowest knowledge is minimum.
+Input
+First line of the input will contain number of test cases t; In the next t lines the first number is n the number of students in the class 
+followed by n integers denoting the knowledge levels of the n students
+Output
+Your output should be a single line containing the lowest possible difference between the team with highest knowledge and the one with lowest knowledge.
+
+Explanation
+Input Constraints are
+1 <= t <= 100 1 <= n <= 100 1 <= knowledge level <= 10000
+
+for _ in range(int(input())):
+    arr = list(map(int,input().split()))
+    arr = arr[1:]
+    arr.sort()
+    l, h = 0, len(arr)-1
+    minn,maxx = float('inf'), float('-inf')
+    while l < h:
+        s = arr[l] + arr[h]
+        if s < minn:
+            minn = s
+        if s > maxx:
+            maxx = s
+        l += 1
+        h -= 1
+    print(maxx-minn)
+	
+20) RANK-LIST
+
+Mid sem marks of a particular subject is announced , since you are curious in knowing your position in class so you decided to make a rank list. 
+You are given the name , scholoar number and marks of every student in your class. You have to come up with accurate rank list i.e student 
+having maximum marks at the top and if two students are having same marks then the student having lexicographically smaller name comes first, 
+if both name and marks of the student collide then student having smaller scholar number comes first.
+Input: 
+First line of input contains N - Total number of students in class 
+Next N line contains name of student , scholar number and marks scored in exam .
+Output:
+Print the ranklist of students as explained above. 
+Constraints
+1 <= N <= 1000 
+1 <= length of name <= 10 
+1 <= scholar number <= 1000 
+0 <= marks <= 30 
+
+students = []
+for _ in range(int(input())):
+    temp = list(map(str,input().split()))
+    temp[1] = int(temp[1])
+    temp[2] = int(temp[2])
+    students.append(temp)
+
+students.sort(key = lambda x:(-x[2], x[0], x[1]))
+for i in range(len(students)):
+    print(students[i][0],students[i][1],students[i][2])
+	
+21) REDUCE THE FRACTION
+
+Reduce the fraction to the lowest possible.
+Input
+First line consist of T - the number of test cases.
+T lines follows - each consisting of 2 numbers A B
+Output
+Output T lines - In each line print the answer in the form P/Q.
+
+def gcd(x, y):
+    while y != 0:
+        (x, y) = (y, x % y)
+    return x
+n = int(input())
+while n>0 :
+    a,b=map(int,input().split())
+    gn = gcd(a,b)
+    r1 = int(a/gn)
+    r2 = int(b/gn)
+    print("%d/%d"%(r1,r2))
+    n-=1
+	
+22) ROY AND CODING CONTEST
+
+Roy is going to organize Finals of Coding Contest in his college's computer labs. According to the rules of contest, 
+problem statements will be available on each computer as pdf file.
+Now there are N number of computers and only one of them has the pdf file. Roy has collected M number of pendrives from his friends. 
+Copying pdf from computer to pendrive or from pendrive to computer takes exactly 1 minute. 
+Roy has to copy pdf to all N computers in minimum (optimal) time possible. You are to find this minimum time. 
+Input:
+First line will contain integer T - number of test cases.
+Next T lines each will contain two space separated integers, N - number of computers, M - number of pendrives.
+Output:
+Print the minimum time (in minutes) for each test case in a new line.
+
+for _ in range(int(input())):
+    n,m = map(int,input().split())
+    if n <= 1:
+        print(0)
+    else:
+        count = time = 1
+        while count < m and count < n:
+            count *= 2
+            time += 1
+        if count > n:
+            count //= 2
+            time -= 1
+        rem = n - count
+        time += rem//m
+        if rem % m != 0:
+            time += 1
+        print(time)
+		
+23) ROY AND TEXTING ROBOT
+
+Roy frequently needs to use his old Nokia cell phone for texting.
+You may be already familiar with the working of the keypad, however if you're not we shall see a few examples.
+To type "b", we need to press "2" twice. To type "?" we need to press "1" thrice. To type "5" we need to press "5" four times. 
+To type "0" we need to press "0" twice.
+I hope that it's clear how the keypad is being used.
+Now Roy has lot of text messages and they are pretty lengthy. So he devised a mechanical-hand-robot (with only 1 finger) which 
+does the typing job. One drawback of this robot is its typing speed. It takes 1 second for single press of any button. 
+Also it takes 1 second to move from one key to another. Initial position of the hand-robot is at key 1.
+So if its supposed to type "hack" it will take 1 second to move from key 1 to key 4 and then 2 seconds to type "h".
+Now again 1 second to move from key 4 to key 2 and then 1 second to type "a".
+Since "c" is present at the same key as "a" movement time is 0. So it simply takes 3 seconds to type "c".
+Finally it moves from key 2 to key 5 in 1 second and then 2 seconds to type "k". So in total it took 1+2+1+1+3+1+2= 11 
+seconds to type "hack".
+Input:
+First line contains T - number of test cases.
+Each of next T lines contain a string S - the message Roy needs to send.
+Each string is terminated by a newline escape sequence \n.
+Output:
+For each test case output the time taken by the hand-robot to type down the message.
+Constraints:
+1 ≤ T ≤ 50
+1 ≤ |S| ≤ 1000 , where |S| denotes the length of string S
+String is made of all the characters shown in the image above which are as follows:
+"." (period), "," (comma), "?" (question mark), "!" (exclamation mark), [a-z] (small case english alphabets), "_" 
+(underscore) and [0-9] (digits)
+Note: We are using "_" underscore instead of " " empty space to avoid confusion
+
+data = ('.,?!1','abc2','def3','ghi4','jkl5','mno6','pqrs7','tuv8','wxyz9','_0')
+for _ in range(int(input())):
+    key = data[0]
+    time = 0
+    for c in input():
+        for k in data:
+            if c in k:
+                if k != key:
+                    time += 1
+                    key = k
+                time += (k.index(c) + 1)
+                break
+    print(time)
+
+24) ROY LIFE CYCLE
+
+Roy is going through the dark times of his life. Recently his girl friend broke up with him and to overcome 
+the pain of acute misery he decided to restrict himself to Eat-Sleep-Code life cycle. For N days he did nothing but eat, sleep and code.
+A close friend of Roy kept an eye on him for last N days. For every single minute of the day, he kept track of Roy's actions 
+and prepared a log file.
+The log file contains exactly N lines, each line contains a string of length 1440 ( i.e. number of minutes in 24 hours of the day).
+The string is made of characters E, S, and C only; representing Eat, Sleep and Code respectively. ith character of the string 
+represents what Roy was doing during ith minute of the day.
+Roy's friend is now interested in finding out the maximum of longest coding streak of the day - X.
+He also wants to find the longest coding streak of N days - Y.
+Coding streak means number of C's without any E or S in between.
+See sample test case for clarification.
+Input:
+First line of each file contains N - number of days.
+Following N lines contains a string of exactly 1440 length representing his activity on that day.
+Output:
+Print X and Y separated by a space in a single line.
+Constraints:
+1 ≤ N ≤ 365
+String consists of characters E, S, and C only.
+String length is exactly 1440.
+Note: The sample test case does not follow the given constraints on string length to avoid large data. 
+It is meant only for explanation. We assure you that the hidden test files strictly follow the constraints.
+SAMPLE INPUT 
+4
+SSSSEEEECCCCEECCCC
+CCCCCSSSSEEECCCCSS
+SSSSSEEESSCCCCCCCS
+EESSSSCCCCCCSSEEEE
+SAMPLE OUTPUT 
+7 9
+Explanation
+Longest coding streak for each day is as follows:
+Day 1: 4
+Day 2: 5
+Day 3: 7
+Day 4: 6
+Maximum of these is 7, hence X is 7.
+Now in order to find longest coding streak of the all days, we should also check if Roy continued his coding from previous days.
+As in the sample test case, Roy was coding for 4 minutes at the end of Day 1 and he continued to code till 5 more minutes on Day 2. 
+Hence the longest coding streak is 4+5 equals 9. There is no any other coding streak larger than this. So the longest coding 
+streak of all days is 9.
+"""
+lStreak = 0
+maxStreak = 0
+tempLStreak = 0
+for _ in range(int(input())):
+    streak = 0
+    for i in input():
+        if i == 'C':
+            streak += 1
+            tempLStreak += 1
+        else:
+            streak = 0
+            tempLStreak = 0
+        if streak > maxStreak:
+                maxStreak = streak
+        if tempLStreak > lStreak:
+            lStreak = tempLStreak
+print(maxStreak,lStreak)
+
+25) SET UNSET BITS
+
+Lazy problem setter runs out of stories for this problem and doesn't want to gift arrays on birthdays. 
+Construct a sequence of positive integers for which the greatest common divisor of their count of set and unset bits is 1.
+S = {xi : xi is a positive integer and gcd of count of its set and unset bits is 1}
+You will be asked Q queries, each query contains a number  K. For each query you need to find the Kth element of this sequence.
+Input:
+First line contains Q and subsequent Q lines contain only one integer K.
+Output:
+Output Q lines each line containing Kth element of sequence S.
+
+def gcd(a,b):
+    if(b==0):
+        return a
+    else:
+        return gcd(b,a%b)
+
+arr = [1]
+def seq(x):
+    if x <= len(arr):
+        return arr[x-1]
+    n = arr[-1] + 1
+    x = x - len(arr)
+    while x:
+        binary = bin(n)[2:]
+        count1 = binary.count('1')
+        count0 = binary.count('0')
+        if gcd(count1,count0) == 1:
+            arr.append(n)
+            x -= 1
+        n += 1
+    return arr[-1]
+    
+for _ in range(int(input())):
+    print(seq(int(input())))
+	
+26) SIMPLE SEARCH
+
+Find The Position Of Number K In The Given List.
+Input Format
+First Line Take Input Value Of N
+Second Line Take Input N Space Separated Integer Value
+Third Line Take Input Value Of K
+Output Format
+Position Of K In The Given List
+
+N = int(input())
+arr = list(map(int,input().split()))
+K = int(input())
+for i in range(N):
+    if (K == arr[i]):
+        print(i)
+		
+27) SPECIAL SERIES SUM
+
+Given the value of n, we need to find the sum of the series where i-th term is sum of first i natural numbers.
+Note:- Sum of the series 1 + (1+2) + (1+2+3) + (1+2+3+4) + …… + (1+2+3+4+…+n)
+Input:
+The first line of the input contains a single integer T, denoting the number of test cases. 
+Then T test case follows, a single line of the input containing a positive integer N.
+Output:
+Print the sum of the series of N terms for each testcase.
+
+t = int(input())
+while t > 0:
+    n = int(input())
+    summ = 0
+    temp = 0
+    for i in range(1,n+1):
+        temp += i
+        summ += temp
+    print(summ)
+    t -= 1
+
+28) STRING ROTATOR
+
+Given a number x and a sentence, print the sentence rotated x times clockwise if x is positive
+and anti-clockwise otherwise.
+Note:The sentence contains no white spaces
+
+n = int(input())
+s = input()
+n = len(s) - n if n > 0 else abs(n)
+print(s[n:]+s[:n])
+
+29) STRING SUM
+
+Consider All lowercase Alphabets of the English language. Here we consider each alphabet from 
+a to z to have a certain weight. The weight of the alphabet a is considered to be 1, b to be 2, 
+c to be 3 and so on until z has a weight of 26. In short, the weight of the alphabet a is 1, and 
+the weight of all other alphabets is the weight of its previous alphabet + 1.
+Now, you have been given a String S consisting of lowercase English characters. You need to 
+find the summation of weight of each character in this String.
+For example, Consider the String aba
+Here, the first character a has a weight of 1, the second character b has 2 and the third 
+character a again has a weight of 1. So the summation here is equal to : 1+2+1=4
+Input Format:
+The first and only line of input contains the String S.
+Output Format 
+Print the required answer on a single line
+
+string = input()
+summ = 0
+for i in string:
+    summ += (ord(i) - 96)
+print(summ)
+
+30) FUN GAME CAPILLARY
+
+A and B are playing a game. In this game, both of them are initially provided with a list of n numbers. (Both have the same list but their own copy).
+Now, they both have a different strategy to play the game. A picks the element from start of his list. B picks from the end of his list.
+You need to generate the result in form of an output list.
+Method to be followed at each step to build the output list is:
+If the number picked by A is bigger than B then this step's output is  . B removes the number that was picked from their list.
+If the number picked by A is smaller than B then this step's output is  . A removes the number that was picked from their list.
+If both have the same number then this step's output is 0 . Both A and  B remove the number that was picked from their list.
+This game ends when at least one of them has no more elements to be picked i.e. when the list gets empty.
+Output the built output list.
+Input format:
+First line consists of a number n  , size of the list provided.
+Next line consists of n numbers separated by space.
+Output format:
+Output the required output list.
+
+t = int(input())
+for _ in range(t):
+    a = list(map(int, input().split()))
+    i,j =0, len(a)-1
+    while i != len(a) and j != -1:
+        if a[j] > a[i]:
+            print("j", j)
+            print("i", i)
+            print("a[j]", a[j])
+            print("a[i]", a[i])
+            print("2", end=" ")
+            i += 1
+        elif a[j] < a[i]:
+            print("j", j)
+            print("i", i)
+            print("a[j]", a[j])
+            print("a[i]", a[i])
+            print("1", end=" ")
+            j -= 1
+        else:
+            print("j", j)
+            print("i", i)
+            print("a[j]", a[j])
+            print("a[i]", a[i])
+            print("0", end=" ")
+            i += 1
+            j -= 1
+			
+31) JUMPY HUMPY
+
+Humpy likes to jump from one building to another. But he only jumps to next higher building and stops when no higher building is available. Stamina required for a journey is xor of all the heights on which humpy jumps until he stops.
+If heights are [1 2 4], and he starts from 1, goes to 2 stamina required is 1 theta 2 = 3 , then from 2 to 3. Stamina for the entire journey is 1 theta 2 theta 4 =7 . Find the maximum stamina required if can start his journey from any building.
+Input
+First line: ,N no of buildings.
+Second line: N integers, defining heights of buildings.
+Output
+Single Integer that is the maximum stamina required for any journey.
+
+n = int(input())
+arr = [int(item) for item in input().split()]
+stk = []
+ans = arr.copy()
+ 
+for i in range(n-1, -1, -1):
+    while len(stk) > 0 and stk[-1][0] < arr[i]:
+        stk.pop()
+    if len(stk) > 0:
+        ans[i] ^= ans[stk[-1][1]]
+    stk.append([arr[i], i])
+    print('stk[-1][0]', stk[-1][0])
+    print('stk[-1][1]', stk[-1][1])
+    print(ans)
+    print(stk)
+print(max(ans))
+
+32) MAXIMIZE THE SUM
+
+You are given an array A of N integers. You want to choose some integers from the array subject to the condition that the number of distinct integers chosen should not exceed K. Your task is to maximize the sum of chosen numbers. 
+
+You are given T test cases.
+
+Input format
+
+The first line contains a single integer  denoting the number of test cases.
+The first line of each test case contains two space-separated integers N and K denoting the length of the array and the maximum number of distinct integers you can choose.
+The second line of each test case contains N space-separated integers denoting the integer array A.
+Output format
+
+For each test case(in a separate line), print the maximum sum you can obtain by choosing some elements such that the number of distinct integers chosen is at most K. If you cannot choose any element, output 0 .
+
+from collections import Counter
+t = int(input())
+for _ in range(t):
+    n, k = map(int, input().split())
+    print("n:", n, "k:", k)
+    a = list(map(int, input().split()))
+    b = Counter(a)
+    print(b)
+    result = [val * key for key, val in b.items() if key > 0]
+    result.sort(reverse=True)
+    print(result)
+    print(sum(result[0:k]))
+
+33) MINIMUM ADDITIONS
+
+You are given an array A of N positive integers. Your task is to add a minimum number of non-negative integers to the array such that the floor of an average of array A becomes less than or equal to K.
+The floor of an average of array A containing N integers is equal to . Here  is the floor function. You are given T test cases.
+Input format
+The first line contains a single integer T that denotes the number of test cases. For each test case:
+The first line contains two space-separated integers N and K denoting the length of the array and the required bound.
+The second line contains N space-separated integers denoting the integer array A
+Output format
+For each test case (in a separate line), print the minimum number of non-negative integers that should be added to array A such that the floor of an average of array A is less than or equal to K
+
+t = int(input())
+for _ in range(t):
+    n, k = map(int, input().split())
+    print("n:", n , "k:", k)
+    a = sum(map(int, input().split()))
+    print("sum of array a:", a)
+    print(max(0, a // (k + 1) - n + 1))
+	
+34) NON DECREASING ARRAYS
+
+You are given an array A consisting of N positive integers. Your task is to find an array B of length N satisfying the following conditions:
+
+ for all 
+, for all 
+ is divisible by  for all 
+ is minimum
+You are given  test cases.
+
+Input format
+
+The first line contains a single integer  denoting the number of test cases.
+The first line of each test case contains a single integer  denoting the length of the array.
+The second line of each test case contains  space-separated integers denoting the integer array .
+Output format
+
+For each test case (in a separate line), print  space-separated integers denoting . If there are multiple answers, you can print any of them. It is guaranteed that under the given constraints at least 1  exists.
+
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    arr = list(map(int, input().split()))
+    print(arr[0], end=' ')
+    for i in range(1, n):
+        #print('arr[i-1]', arr[i-1])
+        #print('arr[i]', arr[i])
+        if arr[i-1] % arr[i] == 0:
+            arr[i] =  arr[i-1]
+        else:
+            arr[i] = (arr[i-1]//arr[i] + 1) * arr[i]
+        print(arr[i], end=' ')
+    print()
+	
+35) SCOREBOARD QUERIES
+
+In a tournament there are (N+1) players,  players have already played and their scores are denoted by an array A. Here, a1 is the score of the first player,  a2 of the second, a3...an of the nth player.
+
+Now, the organizers decide the ranks according to the following rules:
+
+The player x scored more than player , player  gets a better rank.
+
+In case of tie, the player with lower indices gets a better rank.
+
+Now, it is the turn of the (n+1)th  player to play. Before playing, he wants to know the number of ranks that he can secure so that he can decide his strategy.
+
+Now, the jury has some scoreboard updates. Therefore, your task is to tell the jury after every update the number of distinct possible ranks that he can get.
+
+Input format
+
+The first line contains the number of test cases .
+The first line of each test case contains two integers  and  denoting the number of players who have already played and the number of updates by jury.
+The second line of each test case contains  space-separated integers of array .
+Next  lines of each test case contain two integers  and  denoting the score of the  player has changed to .
+Output format
+For each test case:
+Print  lines denoting the number of possible ranks which  player can get after every update.
+
+
+t= int(input())
+for _ in range(t):
+    n, q = map(int, input().split())
+    print("Given n:", n)
+    print("Given q:", q)
+    arr = list(map(int, input().split()))
+    print("Given array:", arr)
+    hav = dict()
+    for val in arr:
+        hav[val] = hav.get(val, 0) + 1
+    print("hav:", hav)
+    if q>0:
+        for _ in range(q):
+            l, r = map(int, input().split())
+            print("Given l:", l)
+            print("Given r:", r)
+            l -= 1
+            print("new l:", l)
+            print("arr[l]:", arr[l])
+            hav[arr[l]] -= 1
+            print("new hav:", hav)
+            if hav[arr[l]] == 0:
+                hav.pop(arr[l])
+            arr[l] = r
+            print("new arr:", arr)
+            hav[arr[l]] = hav.get(arr[l], 0) + 1
+            print("final hav:", hav)
+    print(len(hav)+1)
+	
+36) TWO STRINGS
+Given two strings of equal length, you have to tell whether they both strings are identical.
+Two strings S1 and S2 are said to be identical, if any of the permutation of string S1 is equal to the string S2. See Sample explanation for more details.**
+Input Format
+First line, contains an intger 'T' denoting no. of test cases.
+Each test consists of a single line, containing two space separated strings S1 and S2 of equal length.
+
+
+Output Format
+For each test case, if any of the permutation of string S1 is equal to the string S2 print YES else print NO.
+
+String is made up of lower case letters only.
+
+t = int(input())
+while t>0:
+    a,b=map(str,input().split())
+    flag=1
+    for i in b:
+         if i in a:
+              a=a.replace(i,"")
+    if a=="":
+         print("YES")
+    else:
+         print("NO")
+    t-=1
+
+37) MONK AND WELCOME PROBLEM
+Having a good previous year, Monk is back to teach algorithms and data structures. This year he welcomes the learners with a problem which he calls "Welcome Problem". The problem gives you two arrays A and B (each array of size N) and asks to print new array C such that: C[i] = A[i] + B[i]; 1<= i<= N
+
+
+Now, Monk will proceed further when you solve this one. So, go on and solve it :)**
+Input Format
+First line consists of an integer N, denoting the size of A and B.
+Next line consists of N space separated integers denoting the array A.
+Next line consists of N space separated integers denoting the array B.
+
+Output Format
+Print N space separated integers denoting the array C.
+
+t = int(input())
+while t>0:
+    try:
+        arr1 = list(map(int,input().split()))
+        arr2 = list(map(int,input().split()))
+        for i in range(len(arr1)):
+            print(arr1[i]+arr2[i], end=" ")
+    except:
+        print()
+    t-=1
+	
+38) addition
+
+ Jack is awesome. His friends call him little Einstein. To test him, his friends gave him a string. They told him to add the string with its reverse string and follow these rules:
+
+Every ith character of string will be added to every ith character of reverse string.
+Both string will contain only lower case alphabets(a-z).
+Eg:- a+a=b,a+c=d,z+a=a (Refer to sample test cases for more details)
+Input:
+
+First line contains a value N denoting number of test cases. Next N lines contains string str.
+
+Output:
+
+For every string str output the string that Jack's friends wants from him.
+
+
+def sum_letter(a,b):
+    start=96
+    vala=ord(a)-start
+    valb=ord(b)-start
+    
+    i=(vala+valb)%26+start   
+    #print(vala,valb,i)
+    if(i==96):
+        return 'z'
+    return chr(i)
+
+
+def sum(word,word2):
+    new=''
+    for i in range(len(word)):
+        new+=sum_letter(word[i],word2[i])
+    return new
+
+
+n=int(input())
+for i in range(n):
+    word=str(input())
+    word2=word[::-1]
+    res=sum(word,word2)
+    print(res)
+
+39) consecutive letters   
+	
+Chandu is very fond of strings. (Or so he thinks!) But, he does not like strings which have same consecutive letters. No one has any idea why it is so. He calls these strings as Bad strings. So, Good strings are the strings which do not have same consecutive letters. Now, the problem is quite simple. Given a string S, you need to convert it into a Good String.
+
+You simply need to perform one operation - if there are two same consecutive letters, delete one of them.
+
+Input:
+The first line contains an integer T, denoting the number of test cases.
+Each test case consists of a string S, which consists of only lower case letters.
+
+Output:
+For each test case, print the answer to the given problem.
+
+n=int(input())
+for i in range(n):
+    s=input()
+    li=[s[0]]
+    for j in range(1,len(s)):
+        if s[j]!=s[j-1]:
+            li.append(s[j])
+    print(''.join(li))
+	
+40) digit problem
+
+This time your task is simple.
+Given two integers X and K, find the largest number that can be formed by changing digits at atmost K places in the number X.
+Input:
+First line of the input contains two integers X and K separated by a single space.
+Output:
+Print the largest number formed in a single line.
+
+a=list(map(int,input().split()))
+x=a[0]
+k=a[1]
+temp=x
+len=0
+while temp!=0:
+    len=len+1
+    temp=int(temp/10)
+    
+len=len-1
+while k!=0:
+    temp= 9 * 10**len + x% 10**len
+    if temp > x%10**(len+1):
+        x=x - x%10**(len+1) + temp
+        k=k-1
+        len=len-1
+    else:
+        len=len-1
+print(x)
+
+41) DORSPLEN
+
+Edward is playing a simplified version of game called "Dorsplen". This game is played with gems of three different colors: red, green and blue. Initially player has no gem and there are infinitely many gems of each color on the table.
+
+On each turn a player can either acquire gems or buy an artifact. Artifact can be bought using gems. On acquiring gems player can get three gems of distinct colors or two gems of the same color from the table.
+
+Edward is planning to buy an artifact, it costs r red gems, g green gems and b blue gems. Compute, what is the minimum number of turns Edward has to make to earn at least r red gems, g green gems and b blue gems, so that he will be able to buy the artifact.
+
+Input format
+
+Input contains three integers in a single line r, g and b — the number of red, green and blue gems, respectively, required to buy the artifact.
+
+Constraints
+
+
+Output format
+
+Output single integer: the minimum number of turns Edward has to make to be able to buy the artifact.
+
+li=list(map(int,input().split()))
+li.sort()
+#print(li)
+one=(li[1]-li[0])//2
+#print(one)
+li[1]=li[1]-2*one
+two=(li[2]-li[1])//2
+li[2]=li[2]-2*two
+#print(two)
+print(li[2]+one+two)
+
+42) exploring ruins
+
+Little robot CJ-17 is exploring ancient ruins. He found a piece of paper with a word written on it. Fortunately, people who used to live at this location several thousand years ago used only two letters of modern English alphabet: 'a' and 'b'. It's also known, that no ancient word contains two letters 'a' in a row. CJ-17 has already recognized some of the word letters, the others are still unknown.
+
+CJ-17 wants to look up all valid words that could be written on this paper in an ancient dictionary. He needs your help. Find him the word, which is the first in alphabetical order and could be written on the paper.
+
+Input format
+
+The first line contains non-empty string s consisting of 'a', 'b' and '?' characters. Character '?' corresponds to unrecognized letter.
+
+It's guaranteed, that there exists at least one ancient word, that could be written on the paper.
+
+Constraints
+
+Length of s is at most 50.
+
+Output format
+
+Output the first in alphabetical order word, that could be written on the paper, found by CJ-17.
+
+s=input()
+for i in range(len(s)):
+    if i==0 and s[i]=='?':
+        if s=='?':
+            s='a'
+        elif s[i+1] is not 'a':
+            #s2.append('a')
+            s='a'+s[1:]
+            
+        else:
+            s='b'+s[1:]
+            
+    elif i==(len(s)-1) and s[i]=='?':
+        if s[i-1] is not 'a':
+            s=s[:len(s)-1]+'a'
+            
+        else:
+            s=s[:len(s)-1]+'b'
+            
+    elif s[i]=='?':
+        if s[i-1] is not 'a' and s[i+1] is not 'a':
+            s=s[:i]+'a'+s[i+1:]
+            
+        else:
+            s=s[:i]+'b'+s[i+1:]
+            
+            
+print(s)
+
+43) jarvis seven segments
+
+All over the world people are working on energy solution. It would be a tough time for our netx generation to survive if we dont think about solution.
+Tony stark is working on a new project and wants to siplay his project using seven segment display. Find a no. from his favourite list of number for which energy consumption is low.
+
+def led(n):
+    if n==1:
+        return 2
+    elif n==7:
+        return 3
+    elif n==4:
+        return 4
+    elif n==5 or n==3 or n==2:
+        return 5
+    elif n==0 or n==6 or n==9:
+        return 6
+    elif n==8:
+        return 7
+     
+def tled(n):
+    if n==0:
+        sum=6
+    else:
+        sum=0
+    while n!=0:
+        sum=sum+led(n%10)
+        n=int(n/10)
+    return sum
+   
+t=int(input())
+for i in range(t):
+    n=int(input())
+    a=list(map(int,input().split()))
+    ans=a[0]
+    #print(a)
+    for j in a:
+        if int(tled(ans)) > int(tled(j)):
+            ans=j
+    print(ans)
+	
+44) MONK AND LUCKY MINIMUM-3
+
+Monk just purchased an array A having N integers. Monk is very superstitious. He calls the array A Lucky if the frequency of the minimum element is odd, otherwise he considers it Unlucky. Help Monk in finding out if the array is Lucky or not.
+
+Input:
+First line consists of a single integer T denoting the number of test cases.
+First line of each test case consists of a single integer N denoting the size of array A.
+Second line of each test case consists of N space separated integers denoting the array A.
+
+Output:
+For each test case, print "Lucky" (without quotes) if frequency of minimum element is odd, otherwise print "Unlucky"(without quotes). Print a new line after each test case.
+
+t=int(input())
+for i in range(t):
+    n=int(input())
+    a=list(map(int,input().split()))
+    a.sort()
+    c=a.count(a[0])
+    if c%2==0:
+        print('Unlucky')
+    else:
+        print('Lucky')
+		
