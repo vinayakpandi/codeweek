@@ -1,0 +1,44 @@
+1) You need to find the summation of weight of each character in this String.
+2) You need to calculate this sum for a given n.
+3) You have to check if the strings are permutations of each other and output "YES" or "NO" accordingly
+4) Calculate how many points with integer coordinates on or inside this square could  be the frog's position after exactly T seconds.
+5) In maze ,find the final point where he came out.
+6) Fibbonacci
+7) Help Goki find his friends
+8) Determine the number of positive even integers that are smaller than or equal to it and are not a multiple of 4
+9) you want to find all the marks that are not smaller than those on its  right side in the array.
+10) find out the minimum number of single digit prime numbers which when summed equals a given number X
+11) Napoleon wants to know his maximum Earning for each day.
+12) He will give you a number , and you  have to tell him the total number of occurrences of that number in the array of numbers shown to your team
+13) given you a list of N random integers  and he wants you to find the integer which has the maximum frequency in the given list.
+14) find the nth term of the sequence given by the equation.
+15) you predict the maximum positive sum possible, then you win.
+16) Among all the good substrings of s ,print the size of the longest one.
+17) Determine who wins the game if Ashish plays first.
+18) print the total number of points that lie strictly inside the rectangle.
+19) Your output should be a single line containing the lowest possible difference between the team with highest knowledge and the one with lowest knowledge.
+20) You have to come up with accurate rank list
+21) Reduce the fraction to the lowest possible.
+22) You are to find this minimum time. 
+23) For each test case output the time taken by the hand-robot to type down the message.
+24) Print X and Y separated by a space in a single line.
+25) For each query you need to find the Kth element of this sequence.
+26) Position Of K In The Given List
+27) we need to find the sum of the series where i-th term is sum of first i natural numbers.Print the sum of the series of N terms for each testcase.
+28) print the sentence rotated x times clockwise if x is positive and anti-clockwise otherwise.
+29) You need to  find the summation of weight of each character in this String.
+30) Output the built output list.
+31) Find the maximum stamina required if can start his journey from any building.
+32) Your task is to maximize the sum of chosen numbers. 
+33) print the minimum number of non-negative integers that should be added to array A such that the floor of an average of array A is less than or equal to K
+34) find an array B of length N satisfying the following conditions:
+35) tell the jury after every update the number of distinct possible ranks that he can get.
+36) Given two strings of equal length, you have to tell whether they both strings are identical.
+37) print new array C such that: C[i] = A[i] + B[i]; 1<= i<= N
+38) They told him to add the string with its reverse string and follow these rules:
+39) Given a string S, you need to convert it into a Good String.
+40) find the largest number that can be formed by changing digits at atmost K places in the number X.
+41) what is the minimum number of turns Edward has to make to earn at least r red gems, g green gems and b blue gems, so that he will be able to buy the artifact.
+42) Find him the word, which is the first in alphabetical order and could be written on the paper.
+43) Find a no. from his favourite list of number for which energy consumption is low.
+44) Help Monk in finding out if the array is Lucky or not.
