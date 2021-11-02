@@ -1,0 +1,124 @@
+ARRAYS
+2d array
+Array Manipulation
+Array Left Rotation
+Min Swaps
+New Year Chaos
+
+DICTIONARIES AND HASHMAPS
+Count Triplets
+Frequency Queries
+Hastables Ransomnote
+Sherlock and Anagrams
+2 strings
+
+DYNAMIC PROGRAMMING
+Abbreviation
+Abbreviation Cached
+candies
+decibinary numbers
+Maxaarray sum
+
+GRAPHS
+Connected cell in a grid
+Find the nearest clone
+Matrix
+Roads and Libraries
+Shorest reach in a graph
+
+GREEDY ALGORITHMS
+Greedy Florist
+Luck Balance
+Max Min
+Min absolute difference an array
+Reverse shuflle merge
+
+LINKEDLIST
+Detect a cycle
+Find merge point of two lists
+Insert a node at specific position in a linked list
+Insert a node into a  position in a linked list
+Reverse a double linked list
+
+MISCELLANEOUS
+Flipping bits
+Friend circle queries
+Maximum xor
+Time complexity primality
+
+RECURSION AND BACKTRACKING
+Crossword puzzle
+Recursion davis staircase
+recursion fibonacci numbers
+recursive digitsum
+
+SEARCH
+Hash table ice cream parlour
+Making candies
+Maximum sub array sum
+Minimum time required
+pairs
+swap nodes
+triple sum
+
+SORTING
+Bubble Sort
+Comparator
+Fraudulent activity
+Mark and toys
+merge sort counting inversions
+
+STACKS AND QUEUES
+Balanced brackets
+Castle on the grid
+Largest rectangle
+Min max riddle
+poisonous plants
+queues a tale of two stacks
+
+STRING MANIPULATION
+Alternating characters
+Common child
+making anagrams
+sherlock and the valid string
+special palindrome again
+
+TREES
+Height of a binary tree
+Huffman decoding
+Is this a binary search tree
+Lowest common ancestor
+
+WARMUP CHALLENGES
+Counting Valleys
+Jumping on the clouds
+Repeated strings
+Sock Merchant
+
+
+ALGRITHMS
+Breadth first seacrh
+Bubble Sort
+Comparator
+Depth First search
+Ice cream parlour two sum
+merge sort
+
+DATA STRUCTURES
+anagrams
+balanced brackets
+binary tree
+contacts bisect
+cycle
+left rotation
+median
+queue
+ransom
+
+TECHNIQUE CONCPETS
+bit manipulation
+dp coin
+fibbonacci
+prime
+staircase
+

@@ -1,0 +1,1898 @@
+1) Sock Merchant
+There is a large pile of socks that must be paired by color. Given an array of integers representing the color of each sock, determine how many pairs of socks with matching colors there are.
+
+Example
+
+
+There is one pair of color  and one of color . There are three odd socks left, one of each color. The number of pairs is .
+
+Function Description
+
+Complete the sockMerchant function in the editor below.
+
+sockMerchant has the following parameter(s):
+
+int n: the number of socks in the pile
+int ar[n]: the colors of each sock
+Returns
+
+int: the number of pairs
+Input Format
+
+The first line contains an integer , the number of socks represented in .
+The second line contains  space-separated integers, , the colors of the socks in the pile
+
+import os
+
+# Complete the sockMerchant function below.
+def sockMerchant(n, ar):
+    pairs = 0
+    visited = []
+    for i in range(n):
+        if ar[i] not in visited:
+            visited.append(ar[i])
+            count = 1
+            for j in range(i + 1, n):
+                if ar[i] == ar[j]:
+                    count += 1
+            pairs += int(count/2)
+    return pairs
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    n = int(input())
+    ar = list(map(int, input().rstrip().split()))
+
+    result = sockMerchant(n, ar)
+    fptr.write(str(result) + '\n')
+    fptr.close()
+
+2) Counting Valleys
+
+An avid hiker keeps meticulous records of their hikes. During the last hike that took exactly  steps, for every step it was noted if it was an uphill, , or a downhill,  step. Hikes always start and end at sea level, and each step up or down represents a  unit change in altitude. We define the following terms:
+
+A mountain is a sequence of consecutive steps above sea level, starting with a step up from sea level and ending with a step down to sea level.
+A valley is a sequence of consecutive steps below sea level, starting with a step down from sea level and ending with a step up to sea level.
+Given the sequence of up and down steps during a hike, find and print the number of valleys walked through.
+
+Example
+
+ 
+
+The hiker first enters a valley  units deep. Then they climb out and up onto a mountain  units high. Finally, the hiker returns to sea level and ends the hike.
+
+Function Description
+
+Complete the countingValleys function in the editor below.
+
+countingValleys has the following parameter(s):
+
+int steps: the number of steps on the hike
+string path: a string describing the path
+Returns
+
+int: the number of valleys traversed
+Input Format
+
+The first line contains an integer , the number of steps in the hike.
+The second line contains a single string , of  characters that describe the path.
+
+import os
+
+# Complete the countingValleys function below.
+def countingValleys(n, s):
+    level = 0
+    num_valley = 0
+
+    for i in s:
+        if i == "U":
+            level = level+1
+        if i == "D":
+            level = level -1
+        if(level == 0 and i == "U"):
+            num_valley += 1
+    return num_valley
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    n = int(input())
+    s = input()
+
+    result = countingValleys(n, s)
+    fptr.write(str(result) + '\n')
+    fptr.close()
+	
+3) jumping-on-the-clouds
+There is a new mobile game that starts with consecutively numbered clouds. Some of the clouds are thunderheads and others are cumulus. The player can jump on any cumulus cloud having a number that is equal to the number of the current cloud plus  or . The player must avoid the thunderheads. Determine the minimum number of jumps it will take to jump from the starting postion to the last cloud. It is always possible to win the game.
+
+For each game, you will get an array of clouds numbered  if they are safe or  if they must be avoided.
+
+Example
+
+Index the array from . The number on each cloud is its index in the list so the player must avoid the clouds at indices  and . They could follow these two paths:  or . The first path takes  jumps while the second takes . Return .
+
+Function Description
+
+Complete the jumpingOnClouds function in the editor below.
+
+jumpingOnClouds has the following parameter(s):
+
+int c[n]: an array of binary integers
+Returns
+
+int: the minimum number of jumps required
+Input Format
+
+The first line contains an integer , the total number of clouds. The second line contains  space-separated binary integers describing clouds  where .	
+
+
+import os
+
+# Complete the jumpingOnClouds function below.
+def jumpingOnClouds(c):
+    count = 0
+    i = 0
+    while i < len(c) - 1:
+        if (i + 2) < len(c) and c[i + 2] == 0:
+            i += 2
+        else:
+            i += 1
+        count += 1
+    return count
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    n = int(input())
+    c = list(map(int, input().rstrip().split()))
+
+    result = jumpingOnClouds(c)
+    fptr.write(str(result) + '\n')
+    fptr.close()
+	
+
+4) Repeated String
+
+
+There is a string, , of lowercase English letters that is repeated infinitely many times. Given an integer, , find and print the number of letter a's in the first  letters of the infinite string.
+
+Example
+
+
+The substring we consider is , the first  characters of the infinite string. There are  occurrences of a in the substring.
+
+Function Description
+
+Complete the repeatedString function in the editor below.
+
+repeatedString has the following parameter(s):
+
+s: a string to repeat
+n: the number of characters to consider
+Returns
+
+int: the frequency of a in the substring
+Input Format
+
+The first line contains a single string, .
+The second line contains an integer, .
+
+import os
+
+# Complete the repeatedString function below.
+def repeatedString(s, n):
+    count_1 = n//len(s) * s.count('a')
+    remained_string = n%len(s)
+    count_2 = s[:remained_string].count('a')
+    return count_1 + count_2
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    s = input()
+    n = int(input())
+
+    result = repeatedString(s, n)
+    fptr.write(str(result) + '\n')
+    fptr.close()
+	
+5) 2d array
+
+Given a  2D Array, :
+
+1 1 1 0 0 0
+0 1 0 0 0 0
+1 1 1 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+An hourglass in  is a subset of values with indices falling in this pattern in 's graphical representation:
+
+a b c
+  d
+e f g
+There are  hourglasses in . An hourglass sum is the sum of an hourglass' values. Calculate the hourglass sum for every hourglass in , then print the maximum hourglass sum. The array will always be .
+
+Example
+
+
+-9 -9 -9  1 1 1 
+ 0 -9  0  4 3 2
+-9 -9 -9  1 2 3
+ 0  0  8  6 6 0
+ 0  0  0 -2 0 0
+ 0  0  1  2 4 0
+The  hourglass sums are:
+
+-63, -34, -9, 12, 
+-10,   0, 28, 23, 
+-27, -11, -2, 10, 
+  9,  17, 25, 18
+The highest hourglass sum is  from the hourglass beginning at row , column :
+
+0 4 3
+  1
+8 6 6
+Note: If you have already solved the Java domain's Java 2D Array challenge, you may wish to skip this challenge.
+
+Function Description
+
+Complete the function hourglassSum in the editor below.
+
+hourglassSum has the following parameter(s):
+
+int arr[6][6]: an array of integers
+Returns
+
+int: the maximum hourglass sum
+
+import os
+
+# Complete the hourglassSum function below.
+def hourglassSum(arr):
+    new_array = []
+    for i in range(len(arr)):
+        for j in range(len(arr[i])):
+            new_array.append(arr[i][j:j+3])
+    second_array = []
+    for i in range(len(new_array)-13):
+        if len(new_array[i]) == 3:
+            temp = []
+            temp.extend(new_array[i])
+            temp.extend(new_array[i+12])
+            temp.extend(new_array[i+6][1:2])
+            second_array.append(sum(temp))
+    return max(second_array)
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    ARRAY = []
+
+    for _ in range(6):
+        ARRAY.append(list(map(int, input().rstrip().split())))
+
+    RESULT = hourglassSum(ARRAY)
+    fptr.write(str(RESULT) + '\n')
+    fptr.close()
+	
+6) Arrays: Left Rotation
+
+A left rotation operation on an array shifts each of the array's elements  unit to the left. For example, if  left rotations are performed on array , then the array would become . Note that the lowest index item moves to the highest index in a rotation. This is called a circular array.
+
+Given an array  of  integers and a number, , perform  left rotations on the array. Return the updated array to be printed as a single line of space-separated integers.
+
+Function Description
+
+Complete the function rotLeft in the editor below.
+
+rotLeft has the following parameter(s):
+
+int a[n]: the array to rotate
+int d: the number of rotations
+Returns
+
+int a'[n]: the rotated array
+Input Format
+
+The first line contains two space-separated integers  and , the size of  and the number of left rotations.
+The second line contains  space-separated integers, each an .
+
+Constraints
+
+Sample Input
+
+5 4
+1 2 3 4 5
+Sample Output
+
+5 1 2 3 4
+Explanation
+
+When we perform  left rotations, the array undergoes the following sequence of changes:
+
+import os
+
+# Complete the rotLeft function below.
+def rotLeft(a, d):
+    size = len(a)
+
+    if size < d:
+        d = size % d
+    return a[d:size] + a[0:d]
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    nd = input().split()
+    n = int(nd[0])
+    d = int(nd[1])
+    a = list(map(int, input().rstrip().split()))
+
+    RESULT = rotLeft(a, d)
+    fptr.write(' '.join(map(str, RESULT)))
+    fptr.write('\n')
+    fptr.close()
+	
+7) New Year Chaos
+
+def minimumBribes(q):
+    bribes = 0
+    for i in range(len(q)-1, -1, -1):
+        if q[i] - (i + 1) > 2:
+            print('Too chaotic')
+            return
+        for j in range(max(0, q[i] - 2), i):
+            if q[j] > q[i]:
+                bribes += 1
+    print(bribes)
+
+if __name__ == '__main__':
+    t = int(input())
+
+    for t_itr in range(t):
+        n = int(input())
+
+        q = list(map(int, input().rstrip().split()))
+
+        minimumBribes(q)
+		
+8) Minimum swaps
+You are given an unordered array consisting of consecutive integers  [1, 2, 3, ..., n] without any duplicates. You are allowed to swap any two elements. Find the minimum number of swaps required to sort the array in ascending order.
+
+Example
+
+
+Perform the following steps:
+
+i   arr                         swap (indices)
+0   [7, 1, 3, 2, 4, 5, 6]   swap (0,3)
+1   [2, 1, 3, 7, 4, 5, 6]   swap (0,1)
+2   [1, 2, 3, 7, 4, 5, 6]   swap (3,4)
+3   [1, 2, 3, 4, 7, 5, 6]   swap (4,5)
+4   [1, 2, 3, 4, 5, 7, 6]   swap (5,6)
+5   [1, 2, 3, 4, 5, 6, 7]
+It took  swaps to sort the array.
+
+Function Description
+
+Complete the function minimumSwaps in the editor below.
+
+minimumSwaps has the following parameter(s):
+
+int arr[n]: an unordered array of integers
+Returns
+
+int: the minimum number of swaps to sort the array
+Input Format
+
+The first line contains an integer, , the size of .
+The second line contains  space-separated integers .
+
+import os
+
+# Complete the minimumSwaps function below.
+def minimumSwaps(arr):
+    i = swap = 0
+
+    while i < len(arr):
+
+        while arr[i] != arr[arr[i]-1]:
+
+            temp = arr[i]
+
+            arr[i] = arr[temp-1]
+
+            arr[temp-1] = temp
+            swap += 1
+        i += 1
+    return swap
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+    ARRAY = list(map(int, input().rstrip().split()))
+
+    RESULT = minimumSwaps(ARRAY)
+    fptr.write(str(RESULT) + '\n')
+    fptr.close()
+	
+9) Array Manipulation
+
+Starting with a 1-indexed array of zeros and a list of operations, for each operation add a value to each the array element between two given indices, inclusive. Once all operations have been performed, return the maximum value in the array.
+
+Example
+
+
+Queries are interpreted as follows:
+
+    a b k
+    1 5 3
+    4 8 7
+    6 9 1
+Add the values of  between the indices  and  inclusive:
+
+index->	 1 2 3  4  5 6 7 8 9 10
+	[0,0,0, 0, 0,0,0,0,0, 0]
+	[3,3,3, 3, 3,0,0,0,0, 0]
+	[3,3,3,10,10,7,7,7,0, 0]
+	[3,3,3,10,10,8,8,8,1, 0]
+The largest value is  after all operations are performed.
+
+Function Description
+
+Complete the function arrayManipulation in the editor below.
+
+arrayManipulation has the following parameters:
+
+int n - the number of elements in the array
+int queries[q][3] - a two dimensional array of queries where each queries[i] contains three integers, a, b, and k.
+Returns
+
+int - the maximum value in the resultant array
+Input Format
+
+The first line contains two space-separated integers  and , the size of the array and the number of operations.
+Each of the next  lines contains three space-separated integers ,  and , the left index, right index and summand.
+
+import os
+
+# Complete the arrayManipulation function below.
+def arrayManipulation(n, queries):
+    arr = [0]*(n+1)
+    max_value = 0
+    total_sum = 0
+
+    for query in queries:
+        l = query[0]
+        h = query[1]
+        val = query[2]
+        arr[l-1] = arr[l-1] + val
+        arr[h] = arr[h]-val
+    for value in arr:
+        total_sum = total_sum + value
+        max_value = max(max_value, total_sum)
+    return max_value
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    nm = input().split()
+    n = int(nm[0])
+    m = int(nm[1])
+
+    QUERIES = []
+    for _ in range(m):
+        QUERIES.append(list(map(int, input().rstrip().split())))
+
+    RESULT = arrayManipulation(n, QUERIES)
+    fptr.write(str(RESULT) + '\n')
+    fptr.close()
+	
+10) Hash Tables: Ransom Note
+
+Harold is a kidnapper who wrote a ransom note, but now he is worried it will be traced back to him through his handwriting. He found a magazine and wants to know if he can cut out whole words from it and use them to create an untraceable replica of his ransom note. The words in his note are case-sensitive and he must use only whole words available in the magazine. He cannot use substrings or concatenation to create the words he needs.
+
+Given the words in the magazine and the words in the ransom note, print Yes if he can replicate his ransom note exactly using whole words from the magazine; otherwise, print No.
+
+Example
+ = "attack at dawn"  = "Attack at dawn"
+
+The magazine has all the right words, but there is a case mismatch. The answer is .
+
+Function Description
+
+Complete the checkMagazine function in the editor below. It must print  if the note can be formed using the magazine, or .
+
+checkMagazine has the following parameters:
+
+string magazine[m]: the words in the magazine
+string note[n]: the words in the ransom note
+Prints
+
+string: either  or , no return value is expected
+Input Format
+
+The first line contains two space-separated integers,  and , the numbers of words in the  and the , respectively.
+The second line contains  space-separated strings, each .
+The third line contains  space-separated strings, each .
+
+Constraints
+
+.
+Each word consists of English alphabetic letters (i.e.,  to  and  to ).
+Sample Input 0
+
+6 4
+give me one grand today night
+give one grand today
+Sample Output 0
+
+Yes
+
+def checkMagazine(magazine, note):
+    magazine.sort()
+    note.sort()
+
+    for word in note:
+        if word not in magazine:
+            flag = False
+            break
+        else:
+            magazine.remove(word)
+        flag = True
+
+    if flag:
+        print("Yes")
+    else:
+        print("No")
+
+if __name__ == '__main__':
+    mn = input().split()
+    m = int(mn[0])
+    n = int(mn[1])
+
+    MAGAZINE = input().rstrip().split()
+    NOTE = input().rstrip().split()
+    checkMagazine(MAGAZINE, NOTE)
+	
+11)two 2 strings
+Given two strings, determine if they share a common substring. A substring may be as small as one character.
+
+Example
+
+
+These share the common substring .
+
+
+
+These do not share a substring.
+
+Function Description
+
+Complete the function twoStrings in the editor below.
+
+twoStrings has the following parameter(s):
+
+string s1: a string
+string s2: another string
+Returns
+
+string: either YES or NO
+Input Format
+
+The first line contains a single integer , the number of test cases.
+
+The following  pairs of lines are as follows:
+
+The first line contains string .
+The second line contains string .
+Constraints
+
+ and  consist of characters in the range ascii[a-z].
+Output Format
+
+For each pair of strings, return YES or NO.
+
+import os
+
+# Complete the twoStrings function below.
+def twoStrings(s1, s2):
+    for i in s1:
+        if i in s2:
+            return "YES"
+    return "NO"
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    q = int(input())
+    for q_itr in range(q):
+        s1 = input()
+        s2 = input()
+
+        result = twoStrings(s1, s2)
+        fptr.write(result + '\n')
+
+    fptr.close()
+	
+12) sherlock and anagrams
+
+Two strings are anagrams of each other if the letters of one string can be rearranged to form the other string. Given a string, find the number of pairs of substrings of the string that are anagrams of each other.
+
+Example
+
+The list of all anagrammatic pairs is  at positions  respectively.
+
+Function Description
+
+Complete the function sherlockAndAnagrams in the editor below.
+
+sherlockAndAnagrams has the following parameter(s):
+
+string s: a string
+Returns
+
+int: the number of unordered anagrammatic pairs of substrings in 
+Input Format
+
+The first line contains an integer , the number of queries.
+Each of the next  lines contains a string  to analyze.
+
+Constraints
+
+
+
+ contains only lowercase letters in the range ascii[a-z].
+
+Sample Input 0
+
+2
+abba
+abcd
+Sample Output 0
+
+4
+0
+Explanation 0
+
+The list of all anagrammatic pairs is  and  at positions  and  respectively.
+
+No anagrammatic pairs exist in the second query as no character repeats.
+
+import os
+
+# Complete the sherlockAndAnagrams function below.
+def sherlockAndAnagrams(s):
+    n = len(s)
+    sub_strings = {}
+    anagrams = 0
+
+    for i in range(n):
+        for j in range(i+1, n+1):
+            sub = "".join(sorted(s[i:j]))
+
+            if sub in sub_strings:
+                sub_strings[sub] += 1
+            else:
+                sub_strings[sub] = 1
+
+    for i in sub_strings:
+        n = sub_strings[i] - 1
+        anagrams += int((n * (n+1)) / 2)
+
+    return anagrams
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    q = int(input())
+    for q_itr in range(q):
+        s = input()
+
+        result = sherlockAndAnagrams(s)
+        fptr.write(str(result) + '\n')
+
+    fptr.close()
+	
+13) count-triplets-1
+
+You are given an array and you need to find number of tripets of indices  such that the elements at those indices are in geometric progression for a given common ratio  and .
+
+Example
+ 
+
+There are  and  at indices  and . Return .
+
+Function Description
+
+Complete the countTriplets function in the editor below.
+
+countTriplets has the following parameter(s):
+
+int arr[n]: an array of integers
+int r: the common ratio
+Returns
+
+int: the number of triplets
+Input Format
+
+The first line contains two space-separated integers  and , the size of  and the common ratio.
+The next line contains  space-seperated integers .
+
+Constraints
+
+Sample Input 0
+
+4 2
+1 2 2 4
+Sample Output 0
+
+2
+
+import os
+
+# Complete the countTriplets function below.
+def countTriplets(arr, r):
+    if len(arr) <= 2:
+        return 0
+
+    map_arr = {}
+    map_doubles = {}
+    count = 0
+
+    # Traversing the array from rear, helps to avoid division
+    for x in arr[::-1]:
+        r_x = r*x
+        r_r_x = r*r_x
+
+        # Case: x is the first element (x, x*r, x*r*r)
+        count += map_doubles.get((r_x, r_r_x), 0)
+
+        # Case: x is the second element (x/r, x, x*r)
+        map_doubles[(x, r_x)] = map_doubles.get((x, r_x), 0) + map_arr.get(r_x, 0)
+
+        # Case: x is the third element (x/(r*r), x/r, x)
+        map_arr[x] = map_arr.get(x, 0) + 1
+
+    return count
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    nr = input().rstrip().split()
+    n = int(nr[0])
+    r = int(nr[1])
+
+    arr = list(map(int, input().rstrip().split()))
+    ans = countTriplets(arr, r)
+
+    fptr.write(str(ans) + '\n')
+    fptr.close()
+	
+14) frequency-queries
+You are given  queries. Each query is of the form two integers described below:
+-  : Insert x in your data structure.
+-  : Delete one occurence of y from your data structure, if present.
+-  : Check if any integer is present whose frequency is exactly . If yes, print 1 else 0.
+
+The queries are given in the form of a 2-D array  of size  where  contains the operation, and  contains the data element.
+
+Example
+
+The results of each operation are:
+
+Operation   Array   Output
+(1,1)       [1]
+(2,2)       [1]
+(3,2)                   0
+(1,1)       [1,1]
+(1,1)       [1,1,1]
+(2,1)       [1,1]
+(3,2)                   1
+Return an array with the output: .
+
+Function Description
+
+Complete the freqQuery function in the editor below.
+
+freqQuery has the following parameter(s):
+
+int queries[q][2]: a 2-d array of integers
+Returns
+- int[]: the results of queries of type 
+
+Input Format
+
+The first line contains of an integer , the number of queries.
+Each of the next  lines contains two space-separated integers,  and .
+
+Constraints
+
+All 
+Sample Input 0
+
+8
+1 5
+1 6
+3 2
+1 10
+1 10
+1 6
+2 5
+3 2
+Sample Output 0
+
+import os
+
+# Complete the freqQuery function below.
+def freqQuery(queries):
+    count = dict()
+    result = list()
+
+    for q in queries:
+        if q[0] == 1:
+            try:
+                count[q[1]] += 1
+            except:
+                count[q[1]] = 1
+        elif q[0] == 2:
+            try:
+                count[q[1]] -= 1
+                if count[q[1]] == 0:
+                    del count[q[1]]
+            except:
+                continue
+        else:
+            if q[1] in set(count.values()):
+                result.append('1')
+            else:
+                result.append('0')
+    return result
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    q = int(input().strip())
+
+    queries = []
+    for _ in range(q):
+        queries.append(list(map(int, input().rstrip().split())))
+
+    ans = freqQuery(queries)
+    fptr.write('\n'.join(map(str, ans)))
+    fptr.write('\n')
+    fptr.close()
+	
+15) Bubble sort
+Consider the following version of Bubble Sort:
+
+for (int i = 0; i < n; i++) {
+    
+    for (int j = 0; j < n - 1; j++) {
+        // Swap adjacent elements if they are in decreasing order
+        if (a[j] > a[j + 1]) {
+            swap(a[j], a[j + 1]);
+        }
+    }
+    
+}
+Given an array of integers, sort the array in ascending order using the Bubble Sort algorithm above. Once sorted, print the following three lines:
+
+Array is sorted in numSwaps swaps., where  is the number of swaps that took place.
+First Element: firstElement, where  is the first element in the sorted array.
+Last Element: lastElement, where  is the last element in the sorted array.
+Hint: To complete this challenge, you must add a variable that keeps a running tally of all swaps that occur during execution.
+
+Example
+
+swap    a       
+0       [6,4,1]
+1       [4,6,1]
+2       [4,1,6]
+3       [1,4,6]
+The steps of the bubble sort are shown above. It took  swaps to sort the array. Output is:
+
+Array is sorted in 3 swaps.  
+First Element: 1  
+Last Element: 6  
+Function Description
+
+Complete the function countSwaps in the editor below.
+
+countSwaps has the following parameter(s):
+
+int a[n]: an array of integers to sort
+Prints
+
+Print the three lines required, then return. No return value is expected.
+
+Input Format
+
+The first line contains an integer, , the size of the array .
+The second line contains  space-separated integers .
+
+Constraints
+
+def countSwaps(a):
+    count = 0
+
+    for i in range(len(a)):
+        for j in range(i+1, len(a)):
+            if a[j] < a[i]:
+                a[i] = a[i]+a[j]
+                a[j] = a[i]-a[j]
+                a[i] = a[i] - a[j]
+                count += 1
+
+    print('Array is sorted in {} swaps.'.format(count))
+    print('First Element:', a[0])
+    print('Last Element:', a[-1])
+
+if __name__ == '__main__':
+    n = int(input())
+
+    a = list(map(int, input().rstrip().split()))
+    countSwaps(a)
+
+16) Mark toys
+
+Mark and Jane are very happy after having their first child. Their son loves toys, so Mark wants to buy some. There are a number of different toys lying in front of him, tagged with their prices. Mark has only a certain amount to spend, and he wants to maximize the number of toys he buys with this money. Given a list of toy prices and an amount to spend, determine the maximum number of gifts he can buy.
+
+Note Each toy can be purchased only once.
+
+Example
+
+
+The budget is  units of currency. He can buy items that cost  for , or  for  units. The maximum is  items.
+
+Function Description
+
+Complete the function maximumToys in the editor below.
+
+maximumToys has the following parameter(s):
+
+int prices[n]: the toy prices
+int k: Mark's budget
+Returns
+
+int: the maximum number of toys
+Input Format
+
+The first line contains two integers,  and , the number of priced toys and the amount Mark has to spend.
+The next line contains  space-separated integers 
+
+Constraints
+
+
+
+
+A toy can't be bought multiple times.
+
+Sample Input
+
+7 50
+1 12 5 111 200 1000 10
+Sample Output
+
+import os
+
+# Complete the maximumToys function below.
+def maximumToys(prices, k):
+    cost = 0
+    toys = 0
+    prices.sort()
+
+    for j in range(0, n-1):
+        if cost + prices[j] < k:
+            cost += prices[j]
+            toys += 1
+
+    return toys
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    nk = input().split()
+    n = int(nk[0])
+    k = int(nk[1])
+
+    PRICES = list(map(int, input().rstrip().split()))
+    RESULT = maximumToys(PRICES, k)
+
+    fptr.write(str(RESULT) + '\n')
+    fptr.close()
+
+17) Sorting comparator
+
+Comparators are used to compare two objects. In this challenge, you'll create a comparator and use it to sort an array. The Player class is provided in the editor below. It has two fields:
+
+: a string.
+: an integer.
+Given an array of  Player objects, write a comparator that sorts them in order of decreasing score. If  or more players have the same score, sort those players alphabetically ascending by name. To do this, you must create a Checker class that implements the Comparator interface, then write an int compare(Player a, Player b) method implementing the Comparator.compare(T o1, T o2) method. In short, when sorting in ascending order, a comparator function returns  if ,  if , and  if .
+
+Declare a Checker class that implements the comparator method as described. It should sort first descending by score, then ascending by name. The code stub reads the input, creates a list of Player objects, uses your method to sort the data, and prints it out properly.
+
+Example
+ 
+
+Sort the list as . Sort first descending by score, then ascending by name.
+
+Input Format
+
+The first line contains an integer, , the number of players.
+Each of the next  lines contains a player's  and , a string and an integer.
+
+Constraints
+
+Two or more players can have the same name.
+Player names consist of lowercase English alphabetic letters.
+
+from functools import cmp_to_key
+
+class Player:
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+
+    def __repr__(self):
+        pass
+
+    def comparator(a, b):
+        if a.score < b.score:
+            return 1
+        elif a.score > b.score:
+            return -1
+        else:
+            if a.name > b.name:
+                return 1
+            elif a.name < b.name:
+                return -1
+            else:
+                return 0
+
+n = int(input())
+data = []
+
+for i in range(n):
+    name, score = input().split()
+    score = int(score)
+    player = Player(name, score)
+    data.append(player)
+
+data = sorted(data, key=cmp_to_key(Player.comparator))
+for i in data:
+    print(i.name, i.score)
+	
+18) fraudulent-activity-notifications
+
+HackerLand National Bank has a simple policy for warning clients about possible fraudulent account activity. If the amount spent by a client on a particular day is greater than or equal to  the client's median spending for a trailing number of days, they send the client a notification about potential fraud. The bank doesn't send the client any notifications until they have at least that trailing number of prior days' transaction data.
+
+Given the number of trailing days  and a client's total daily expenditures for a period of  days, determine the number of times the client will receive a notification over all  days.
+
+Example
+
+
+On the first three days, they just collect spending data. At day , trailing expenditures are . The median is  and the day's expenditure is . Because , there will be a notice. The next day, trailing expenditures are  and the expenditures are . This is less than  so no notice will be sent. Over the period, there was one notice sent.
+
+Note: The median of a list of numbers can be found by first sorting the numbers ascending. If there is an odd number of values, the middle one is picked. If there is an even number of values, the median is then defined to be the average of the two middle values. (Wikipedia)
+
+Function Description
+
+Complete the function activityNotifications in the editor below.
+
+activityNotifications has the following parameter(s):
+
+int expenditure[n]: daily expenditures
+int d: the lookback days for median spending
+Returns
+
+int: the number of notices sent
+Input Format
+
+The first line contains two space-separated integers  and , the number of days of transaction data, and the number of trailing days' data used to calculate median spending respectively.
+The second line contains  space-separated non-negative integers where each integer  denotes .
+
+import os
+
+# Complete the activityNotifications function below.
+def activityNotifications(expenditure, d):
+    count = 0
+    count_array = [0] * 201
+
+    for i in range(d):
+        count_array[expenditure[i]] += 1
+
+    for i in range(d, len(expenditure)):
+        if expenditure[i] >= getMedianVal(count_array, d) * 2:
+            count += 1
+        count_array[expenditure[i - d]] -= 1
+        count_array[expenditure[i]] += 1
+
+    return count
+
+def getMedianVal(count_arr, d):
+    is_length_even = d % 2 == 0
+    total_count = 0
+
+    for i, count in enumerate(count_arr):
+        total_count += count
+
+        if is_length_even:
+            if total_count == d // 2:
+                for j in range(i + 1, len(count_arr)):
+                    if count_arr[j] > 0:
+                        return (i + j) / 2
+            elif total_count > d // 2:
+                return i
+        else:
+            if total_count >= d // 2 + 1:
+                return i
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    nd = input().split()
+    n = int(nd[0])
+    d = int(nd[1])
+
+    EXPENDITURE = list(map(int, input().rstrip().split()))
+    RESULT = activityNotifications(EXPENDITURE, d)
+
+    fptr.write(str(RESULT) + '\n')
+    fptr.close()
+	
+19) ctci merge sort
+
+In an array, , the elements at indices  and  (where ) form an inversion if . In other words, inverted elements  and  are considered to be "out of order". To correct an inversion, we can swap adjacent elements.
+
+Example
+
+
+To sort the array, we must perform the following two swaps to correct the inversions:
+
+The sort has two inversions:  and .
+Given an array , return the number of inversions to sort the array.
+
+Function Description
+
+Complete the function countInversions in the editor below.
+
+countInversions has the following parameter(s):
+
+int arr[n]: an array of integers to sort
+Returns
+
+int: the number of inversions
+Input Format
+
+The first line contains an integer, , the number of datasets.
+
+Each of the next  pairs of lines is as follows:
+
+The first line contains an integer, , the number of elements in .
+The second line contains  space-separated integers, .
+Constra
+
+INVERSION_COUNT = 0
+
+def merge_sort(array, length_array):
+    '''Use Inversion Count'''
+    return _merge_sort(array)
+
+def _merge_sort(array):
+    '''Use MergeSort to count inversions'''
+    if len(array) > 1:
+        mid = len(array)//2
+        left_half = array[:mid]
+        right_half = array[mid:]
+
+        # Will calculate inversion counts in the left subarray
+        # Will call the mergesort with right_half and left_half
+        _merge_sort(left_half)
+        _merge_sort(right_half)
+
+        # Will call the merge to sort our tables right_half and left_half
+        merge(array, left_half, right_half)
+        # Will calculate inversion counts in right subarray
+        # Will merge two subarrays in a sorted subarray
+
+def merge(array, left_half, right_half):
+    '''Will merge two subarrays in a single sorted subarray'''
+    global INVERSION_COUNT # Will store our inventions count
+
+    left = 0 # Starting index of left subarray
+    right = 0 # Starting index of right subarray
+    index = 0 # Starting index of to be sorted subarray
+
+    # Conditions are checked to make sure that i and j do not exceed their subarray limits
+    left_length = len(left_half)
+    right_length = len(right_half)
+
+    while left < left_length and right < right_length:
+        # There will be no inversion if left_half[left] <= right_half[right]
+        array_1 = left_half[left]
+        array_2 = right_half[right]
+        if array_1 <= array_2:
+            array[index] = array_1
+            index += 1
+            left += 1
+        else:
+            # Inversion will occur
+            array[index] = array_2
+            INVERSION_COUNT += left_length - left
+            index += 1
+            right += 1
+
+    # Copy the remaining elements of left subarray into a temporary array
+    while left < left_length:
+        array[index] = left_half[left]
+        left += 1
+        index += 1
+
+    # Copy the remaining elements of right subarray into a temporary array
+    while right < right_length:
+        array[index] = right_half[right]
+        right += 1
+        index += 1
+
+for _ in range(int(input())):
+    length_array = int(input())
+    array = list(map(int, input().split()))
+
+    merge_sort(array, length_array)
+
+    print(INVERSION_COUNT)
+    INVERSION_COUNT = 0
+	
+20) making anagrams
+
+A student is taking a cryptography class and has found anagrams to be very useful. Two strings are anagrams of each other if the first string's letters can be rearranged to form the second string. In other words, both strings must contain the same exact letters in the same exact frequency. For example, bacdc and dcbac are anagrams, but bacdc and dcbad are not.
+
+The student decides on an encryption scheme that involves two large strings. The encryption is dependent on the minimum number of character deletions required to make the two strings anagrams. Determine this number.
+
+Given two strings,  and , that may or may not be of the same length, determine the minimum number of character deletions required to make  and  anagrams. Any characters can be deleted from either of the strings.
+
+Example
+
+
+Delete  from  and  from  so that the remaining strings are  and  which are anagrams. This takes  character deletions.
+
+Function Description
+
+Complete the makeAnagram function in the editor below.
+
+makeAnagram has the following parameter(s):
+
+string a: a string
+string b: another string
+Returns
+
+int: the minimum total characters that must be deleted
+Input Format
+
+The first line contains a single string, .
+The second line contains a single string, .
+
+Constraints
+
+The strings  and  consist of lowercase English alphabetic letters, ascii[a-z].
+
+
+import os
+from collections import Counter
+
+# Complete the makeAnagram function below.
+def makeAnagram(a, b):
+    count_a = Counter(a)
+    count_b = Counter(b)
+
+    difference_a = count_a - count_b
+    difference_b = count_b - count_a
+
+    return sum(difference_a.values()) + sum(difference_b.values())
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    a = input()
+    b = input()
+
+    result = makeAnagram(a, b)
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+	
+22) alternating characters
+
+You are given a string containing characters  and  only. Your task is to change it into a string such that there are no matching adjacent characters. To do this, you are allowed to delete zero or more characters in the string.
+
+Your task is to find the minimum number of required deletions.
+
+Example
+
+Remove an  at positions  and  to make  in  deletions.
+
+Function Description
+
+Complete the alternatingCharacters function in the editor below.
+
+alternatingCharacters has the following parameter(s):
+
+string s: a string
+Returns
+
+int: the minimum number of deletions required
+Input Format
+
+The first line contains an integer , the number of queries.
+The next  lines each contain a string  to analyze.
+
+Constraints
+
+Each string  will consist only of characters  and .
+import os
+
+# Complete the alternatingCharacters function below.
+def alternatingCharacters(s):
+    deletions = 0
+
+    for i in range(1, len(s)):
+        if s[i] == s[i-1]:
+            deletions += 1
+
+    return deletions
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    q = int(input())
+
+    for q_itr in range(q):
+        s = input()
+
+        result = alternatingCharacters(s)
+        fptr.write(str(result) + '\n')
+
+    fptr.close()
+	
+23) sherlock-and-valid-string
+
+Sherlock considers a string to be valid if all characters of the string appear the same number of times. It is also valid if he can remove just  character at  index in the string, and the remaining characters will occur the same number of times. Given a string , determine if it is valid. If so, return YES, otherwise return NO.
+
+Example
+
+This is a valid string because frequencies are .
+
+
+This is a valid string because we can remove one  and have  of each character in the remaining string.
+
+
+This string is not valid as we can only remove  occurrence of . That leaves character frequencies of .
+
+Function Description
+
+Complete the isValid function in the editor below.
+
+isValid has the following parameter(s):
+
+string s: a string
+Returns
+
+string: either YES or NO
+Input Format
+
+A single string .
+
+Constraints
+
+import os
+
+# Complete the isValid function below.
+def isValid(s):
+    frequency = {}
+
+    # Set frequencies
+    for char in s:
+        frequency.setdefault(char, 0)
+        frequency[char] += 1
+
+    values = list(frequency.values())
+
+    # Not important which number is used, in this case, first will be used
+    first = values[0]
+    accumulated_difference = 0
+
+    for _ in values:
+        # Difference is taken into consideration -> abs()
+        diff = abs(_ - first)
+
+        # If the value is 1, without taking into consideration the difference, it is counted as 1
+        accumulated_difference += diff if _ != 1 else 1
+
+        # Stops if the the difference is already more than 1
+        if accumulated_difference > 1:
+            return "NO"
+
+    return "YES"
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    RESULT = isValid(s)
+    fptr.write(RESULT + '\n')
+
+    fptr.close()
+
+
+24) Special String Again
+
+A string is said to be a special string if either of two conditions is met:
+
+All of the characters are the same, e.g. aaa.
+All characters except the middle one are the same, e.g. aadaa.
+A special substring is any substring of a string which meets one of those criteria. Given a string, determine how many special substrings can be formed from it.
+
+Example
+
+ contains the following  special substrings: .
+
+Function Description
+
+Complete the substrCount function in the editor below.
+
+substrCount has the following parameter(s):
+
+int n: the length of string s
+string s: a string
+Returns
+- int: the number of special substrings
+
+Input Format
+
+The first line contains an integer, , the length of .
+The second line contains the string .
+
+Constraints
+
+
+Each character of the string is a lowercase English letter, .
+
+Sample Input 0
+
+import os
+
+# Complete the substrCount function below.
+def substrCount(n, s):
+    palindrome_count = 0
+
+    for i in range(n):
+        j = 0
+
+        # Loop while incrementing j, and until a palindrome is found
+        while i+j < n and s[i] == s[i+j]:
+            j += 1
+            palindrome_count += 1
+
+        # s[i+j] is either at the end of the string, or a new letter.
+
+        # Continues if if i+j+j is larger than the string
+        if i+j+j > n:
+            continue
+
+        # Check that each character after i+j, until i+j+j is the same as our start character
+        for _ in range(1, j+1):
+            if i+j+_ >= n or s[i] != s[i+j+_]:
+                break
+        else:
+            palindrome_count += 1
+    return palindrome_count
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+    s = input()
+    RESULT = substrCount(n, s)
+
+    fptr.write(str(RESULT) + '\n')
+    fptr.close()
+
+25) Common child
+A string is said to be a child of a another string if it can be formed by deleting 0 or more characters from the other string. Letters cannot be rearranged. Given two strings of equal length, what's the longest string that can be constructed such that it is a child of both?
+
+Example
+
+
+
+These strings have two children with maximum length 3, ABC and ABD. They can be formed by eliminating either the D or C from both strings. Return .
+
+Function Description
+
+Complete the commonChild function in the editor below.
+
+commonChild has the following parameter(s):
+
+string s1: a string
+string s2: another string
+Returns
+
+int: the length of the longest string which is a common child of the input strings
+Input Format
+
+There are two lines, each with a string,  and .
+
+Constraints
+
+ where  means "the length of "
+All characters are upper case in the range ascii[A-Z].
+Sample Input
+
+HARRY
+SALLY
+Sample Output
+
+ 2
+Explanation
+
+The longest string that can be formed by deleting zero or more characters from  and  is , whose length is 2.
+
+import os
+
+# Complete the commonChild function below.
+def commonChild(s_1, s_2):
+    last_row = [0]*(len(s_1)+1)
+
+    for i in range(1, len(s_1)+1):
+        current = [0]
+        for j in range(1, len(s_2)+1):
+            if s_1[i-1] == s_2[j-1]:
+                current.append(last_row[j-1]+1)
+            else:
+                current.append(max(last_row[j], current[-1]))
+        last_row = current
+
+    return last_row[-1]
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    S_1 = input()
+    S_2 = input()
+    RESULT = commonChild(S_1, S_2)
+
+    fptr.write(str(RESULT) + '\n')
+    fptr.close()
+	
+26)minimum-absolute-difference-in-an-array
+
+The absolute difference is the positive difference between two values  and , is written  or  and they are equal. If  and , . Given an array of integers, find the minimum absolute difference between any two elements in the array.
+
+Example. 
+
+There are  pairs of numbers:  and . The absolute differences for these pairs are ,  and . The minimum absolute difference is .
+
+Function Description
+
+Complete the minimumAbsoluteDifference function in the editor below. It should return an integer that represents the minimum absolute difference between any pair of elements.
+
+minimumAbsoluteDifference has the following parameter(s):
+
+int arr[n]: an array of integers
+Returns
+
+int: the minimum absolute difference found
+Input Format
+
+The first line contains a single integer , the size of .
+The second line contains  space-separated integers, .
+
+Constraints
+
+Sample Input 0
+
+import os
+
+# Complete the minimumAbsoluteDifference function below.
+def minimumAbsoluteDifference(array):
+    array.sort()
+    diff = abs(array[0] - array[1])
+    for i in range(1, len(array)-1):
+        if abs(array[i]-array[i+1]) < diff:
+            diff = abs(array[i]-array[i+1])
+    return diff
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+    ARR = list(map(int, input().rstrip().split()))
+    RESULT = minimumAbsoluteDifference(ARR)
+
+    fptr.write(str(RESULT) + '\n')
+    fptr.close()
+
+27)luck balance
+
+Lena is preparing for an important coding competition that is preceded by a number of sequential preliminary contests. Initially, her luck balance is 0. She believes in "saving luck", and wants to check her theory. Each contest is described by two integers,  and :
+
+ is the amount of luck associated with a contest. If Lena wins the contest, her luck balance will decrease by ; if she loses it, her luck balance will increase by .
+ denotes the contest's importance rating. It's equal to  if the contest is important, and it's equal to  if it's unimportant.
+If Lena loses no more than  important contests, what is the maximum amount of luck she can have after competing in all the preliminary contests? This value may be negative.
+
+Example
+
+
+
+Contest		L[i]	T[i]
+1		5	1
+2		1	1
+3		4	0
+If Lena loses all of the contests, her will be . Since she is allowed to lose  important contests, and there are only  important contests, she can lose all three contests to maximize her luck at .
+
+If , she has to win at least  of the  important contests. She would choose to win the lowest value important contest worth . Her final luck will be .
+
+Function Description
+
+Complete the luckBalance function in the editor below.
+
+luckBalance has the following parameter(s):
+
+int k: the number of important contests Lena can lose
+int contests[n][2]: a 2D array of integers where each  contains two integers that represent the luck balance and importance of the  contest
+Returns
+
+int: the maximum luck balance achievable
+Input Format
+
+The first line contains two space-separated integers  and , the number of preliminary contests and the maximum number of important contests Lena can lose.
+Each of the next  lines contains two space-separated integers,  and , the contest's luck balance and its importance rating.
+
+import os
+
+# Complete the luckBalance function below.
+def luckBalance(k, contests):
+    con = contests
+    con = sorted(con, reverse=True, key=lambda con: con[con[1] == 0])
+
+    con_1 = [imp[0] for i, imp in enumerate(sorted(con)) if imp[1] == 0]
+
+    con_2 = [imp[0] for j, imp in enumerate(sorted(con[0:k], reverse=True)) if imp[1] == 1]
+
+    con_3 = [imp[0] for l, imp in enumerate(sorted(con[k:], reverse=True)) if imp[1] == 1]
+
+    max_luck = sum(con_1)+sum(con_2)-sum(con_3)
+
+    return max_luck
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    nk = input().split()
+    n = int(nk[0])
+    k = int(nk[1])
+
+    CONTESTS = []
+
+    for _ in range(n):
+        CONTESTS.append(list(map(int, input().rstrip().split())))
+
+    RESULT = luckBalance(k, CONTESTS)
+
+    fptr.write(str(RESULT) + '\n')
+    fptr.close()
+	
+28) greedy florist
+
+A group of friends want to buy a bouquet of flowers. The florist wants to maximize his number of new customers and the money he makes. To do this, he decides he'll multiply the price of each flower by the number of that customer's previously purchased flowers plus . The first flower will be original price, , the next will be  and so on.
+
+Given the size of the group of friends, the number of flowers they want to purchase and the original prices of the flowers, determine the minimum cost to purchase all of the flowers. The number of flowers they want equals the length of the  array.
+
+Example
+
+
+The length of , so they want to buy  flowers total. Each will buy one of the flowers priced  at the original price. Having each purchased  flower, the first flower in the list, , will now cost . The total cost is .
+
+Function Description
+
+Complete the getMinimumCost function in the editor below.
+
+getMinimumCost has the following parameter(s):
+
+int c[n]: the original price of each flower
+int k: the number of friends
+Returns
+- int: the minimum cost to purchase all flowers
+
+Input Format
+
+The first line contains two space-separated integers  and , the number of flowers and the number of friends.
+The second line contains  space-separated positive integers , the original price of each flower.
+
+Constraints
+
+import os
+
+# Complete the getMinimumCost function below.
+def getMinimumCost(k, c):
+    sc = sorted(c, reverse=True)
+
+    s = 0
+    counter = 0
+    additional = 0
+
+    for c in sc:
+        if counter == k:
+            counter = 0
+            additional += 1
+
+        s += (additional + 1) * c
+
+        counter += 1
+
+    return s
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    nk = input().split()
+
+    n = int(nk[0])
+    k = int(nk[1])
+    c = list(map(int, input().rstrip().split()))
+
+    MINIMUM_COST = getMinimumCost(k, c)
+
+    fptr.write(str(MINIMUM_COST) + '\n')
+    fptr.close()
+	
+29) Angry children max minimum
+
+You will be given a list of integers, , and a single integer . You must create an array of length  from elements of  such that its unfairness is minimized. Call that array . Unfairness of an array is calculated as
+
+Where:
+- max denotes the largest integer in 
+- min denotes the smallest integer in 
+
+Example
+
+
+
+Pick any two elements, say .
+
+Testing for all pairs, the solution  provides the minimum unfairness.
+
+Note: Integers in  may not be unique.
+
+Function Description
+
+Complete the maxMin function in the editor below.
+maxMin has the following parameter(s):
+
+int k: the number of elements to select
+int arr[n]:: an array of integers
+Returns
+
+int: the minimum possible unfairness
+Input Format
+
+The first line contains an integer , the number of elements in array .
+The second line contains an integer .
+Each of the next  lines contains an integer  where .
+
+Constraints
+
+import os
+
+# Complete the maxMin function below.
+def maxMin(k, arr):
+    sort_arr = sorted(arr)
+    min_unfairness = sort_arr[k - 1] - sort_arr[0]
+    
+    for i in range(1, len(sort_arr) - k + 1):
+        unfairness = sort_arr[i + k - 1] - sort_arr[i]
+        if min_unfairness > unfairness:
+            min_unfairness = unfairness
+
+    return min_unfairness
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    k = int(input())
+
+    arr = []
+
+    for _ in range(n):
+        arr_item = int(input())
+        arr.append(arr_item)
+
+    result = maxMin(k, arr)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+	
+30) reverse shuffle merge
+
+Given a string, , we define some operations on the string as follows:
+
+a.  denotes the string obtained by reversing string . Example: 
+
+
+b.  denotes any string that's a permutation of string . Example: 
+
+
+c.  denotes any string that's obtained by interspersing the two strings  & , maintaining the order of characters in both. For example,  & , one possible result of  could be , another could be , another could be  and so on.
+
+Given a string  such that  for some string , find the lexicographically smallest .
+
+For example, . We can split it into two strings of . The reverse is  and we need to find a string to shuffle in to get . The middle two characters match our reverse string, leaving the  and  at the ends. Our shuffle string needs to be . Lexicographically , so our answer is .
+
+Function Description
+
+Complete the reverseShuffleMerge function in the editor below. It must return the lexicographically smallest string fitting the criteria.
+
+reverseShuffleMerge has the following parameter(s):
+
+s: a string
+Input Format
+
+A single line containing the string .
+
+Constraints
+
+ contains only lower-case English letters, ascii[a-z]
+Output Format
+
+Find and return the string which is the lexicographically smallest valid .
+
+import os
+from collections import defaultdict
+
+def frequency(s):
+    res = defaultdict(int)
+
+    for char in s:
+        res[char] += 1
+    return res
+
+# Complete the reverseShuffleMerge function below.
+def reverseShuffleMerge(s):
+    char_freq = frequency(s)
+    used_chars = defaultdict(int)
+    remain_chars = dict(char_freq)
+    res = []
+
+    def can_use(char):
+        return (char_freq[char] // 2 - used_chars[char]) > 0
+
+    def can_pop(char):
+        needed_chars = char_freq[char] // 2
+        return used_chars[char] + remain_chars[char] - 1 >= needed_chars
+
+    for char in reversed(s):
+        if can_use(char):
+            while res and res[-1] > char and can_pop(res[-1]):
+                removed_char = res.pop()
+                used_chars[removed_char] -= 1
+
+            used_chars[char] += 1
+            res.append(char)
+
+        remain_chars[char] -= 1
+
+    return "".join(res)
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    RESULT = reverseShuffleMerge(s)
+
+    fptr.write(RESULT + '\n')
+    fptr.close()
+
