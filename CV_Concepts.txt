@@ -1,0 +1,144 @@
+1) CONVOLUTION
+convolution is a mathematical operation on two functions (f and g) that produces a third function ({\displaystyle f*g}f*g) that expresses how the shape of one is modified by the other. 
+
+2) How do you DE-NOISE AN IMAGE? WHAT KIND OF FILTERS DO YOU USE FOR DIFFERENT NOISE TYPES
+Spatial Filtering, Transform Domain Filtering and Wavelet Thresholding Method.
+Noise is typically defined as a random variation in brightness or colour information
+Gaussian Noise - It is commonly known that Gaussian noise is statistical noise with a probability density function (PDF) equal to the normal distribution. It has a uniform distribution throughout the signal
+Salt and Pepper Noise - A type of noise commonly seen in photographs is salt and pepper noise. It manifests as white and black pixels that appear at random intervals. Errors in data transfer cause this form of noise to appear.
+Speckle Noise - A multiplicative Noise . reduces image quality by giving images a backscattered wave appearance caused by many microscopic dispersed reflections 
+DENOISING TECHNIQUES:
+A) CNN -  Attention-Residual mechanism (shown in a dashed rectangle) has estimated the noise present in the image In, then it can be further eliminated from the image using a simple additive process
+B) AUTOENCODERS - neural network mainly used to compress and decompress data by leveraging encoders and decoders in a supervised manner. To use autoencoders for denoising, train the encoders and decoders with noisy images as to features, and cleaned images as targets.
+14) Explain various deployment strategies(rolling,recreate & custome)
+15) Suppose if we give 10 estimators to both Random forest and XGBoost , how will they both deal with it.
+a meta estimator that fits a number of decision tree classifiers on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control over-fitting. 
+
+3)What is erosion and dilation
+
+Morphological Transformations are simple operations based on the shape of an image usually performed on a binary image. It takes our input image and a structuring element(kernel) which decides the nature of the operation. whereas  
+
+Structuring Element: A structuring element is a shape used to interact with a given image. It helps us to draw conclusions based on how it misses or fit in the image.
+
+EROSION: Erosion erodes away the boundary and shrinks the size of the foreground object(Always try to keep foreground in white). The kernel slides through the image (as in 2D convolution). A pixel in the original image (either 1 or 0) will be considered 1 only if all the pixels under the kernel is 1, otherwise it is eroded (made to zero).
+All the pixels near boundary will be discarded depending upon the size of kernel. So the thickness or size of the foreground object decreases or simply white region decreases in the image. It is useful for removing small white noises (as we have seen in colorspace chapter), detach two connected objects etc.
+
+DILATION: Its opposite of erosion. Dilation dilates the boundary and hence increases the size of the foreground object. Here, a pixel element is ‘1’ if atleast one pixel under the kernel is ‘1’. So it increases the white region in the image or size of foreground object increases. Normally, in cases like noise removal, erosion is followed by dilation. Because, erosion removes white noises, but it also shrinks our object. So we dilate it. Since noise is gone, they won’t come back, but our object area increases. It is also useful in joining broken parts of an object.
+
+4) What are Linear and Non linear filters
+
+5) Types of video filters in opencv
+Blurring, Smoothing, Distortion, Warp Stabilizer, alpha extract, bilateral, color matrix, chrome hold are few video filters available in OpenCV.
+
+6) Explain each filter
+
+Sobel - The Sobel is a filter in the OpenCV to detect the edge of an image. It detects the edge in both horizontal and vertical directions.
+
+Syntax
+
+Sobel(src, dst, ddepth, dx, dy) 
+Here src is the object representing the source of the image. Dst is the object representing the output image. Ddepth is the variable representing the depth of the image. Dx and dy are variables representing the x & y derivative.
+
+BaeColumn filter, Base filter, BaseRow filter, FilterEngine, Bilateral filter, AdaptiveBilateral Filter, Blur, BorderInterpolate, BoxFilter, BuildPyramid, copyMakeBorder, createBoxFilter, createDerivFilter, createGuassionFilter, createLinear filter, createMorphology filter, createSeparableLinear filter, dilate, erode, filter2D, GuassianBlur, getDerivKernels, getKernelType, getStructuringElement, medianBlur, morphologyEx, Laplacian, pyrDown, pyrUp, pyrMeanShiftFiltering, sepFilter2D, Smooth, Sobel, Scharr.
+
+7)what is  edge detection and why we do it?
+
+
+
+CV_8UC1:
+cv_8uc1 is an 8-bit single-channel array. It has 2 parts, the depth, and various numbers of channels. There is a flexible system that is enough to let the users define some new types with up to 215 channels. CV_8UC1 makes the code more clear that how many numbers of channels is the code is working with. If someone is dealing with a matrix that contains 10 channels or even more than that, the person needs to specify the number of channels that will be included.
+
+
+**********************************************************END*********************************
+
+Given stride and kernel sizes for each layer of a (1-dimensional) CNN, create a function to compute the receptive field of a particular node in the network. This is just finding how many input nodes actually connect through to a neuron in a CNN.
+
+Implement connected components on an image/matrix. I've been asked this twice; neither actually said the words "connected components" at all though. One wanted connected neighbors if the values were identical, the other wanted connected neighbors if the difference was under some threshold.
+
+(During phone screen) How would you implement a sparse matrix class in C++? (On-site) Implement a sparse matrix class in C++. Implement a dot-product method on the class.
+
+Create a function to compute an integral image, and create another function to get area sums from the integral image.
+
+How would you remove outliers when trying to estimate a flat plane from noisy samples?
+
+How does CBIR work?
+
+How does image registration work? Sparse vs. dense optical flow and so on.
+
+Describe how convolution works. What about if your inputs are grayscale vs RGB imagery? What determines the shape of the next layer?
+
+Stuff about colorspace transformations and color-based segmentation (esp. talking about YUV/Lab/HSV/etc).
+
+Talk me through how you would create a 3D model of an object from imagery and depth sensor measurements taken at all angles around the object.
+
+*****************************************************************SET 2 ********************************************************
+
+11) You're in deep space with a star atlas and a calibrated camera. Find your orientation.
+Use the start atlast to find correspondence points from your images and relate them via protective geometry. Since your camera is calibrated, and you know where they are in 3 space, you can back-project your points to find extrinsic parameters from a known center you set.
+
+12) Implement SQRT(const double & x) without using any special functions, just fundamental arithmetic.
+Use taylor series approximation to whatever order you want depending on the accuracy you wish to achieve. You'll get a polynomial to do this operation quickly, and it resolves to basic arithmetic.
+
+13) Given n correspondences between n images taken from cameras with approximately known poses, find the position of the corresponding 3D feature point.
+Similar to 1) but you'll have to use the essential matrix generated by each image set, under the assumption that the pose is not purely a rotation. You get a rotation and a translation between images. If there's pure rotation between images, you can relate correspondences via a homography as your essential matrix resolves to a null matrix, but youre still left with a rotation. This is due to the reliance on epipolar geometry between images and requiring a basline between them generated by a translation between poses. Having a null vector means you won't be able to use a baseline and thus just produce R = H which is your homography matrix.
+
+14) "How do you make code go fast?"
+Reduce if/else if/else statements and needless switch lines. Pre-allocate static buffers on startup of your process based on parameters you know about the system. Avoid allocations/deallocations during operation and leave that during setup/teardown.
+
+15) How do you rotate an image 90 degrees most efficiently if you don't know anything about the cache of the system you're working on?
+Apply a rotation matrix to the buffer. Don't reinvent the wheel, there's libraries that do such things.
+
+16) How do you most precisely and reliably find the pose of an object (of a known class) in a monocular RGB image?
+ Identify object in the image, relate keypoints between initial base classifier then estimate a R|T for a pose to determine its orientation using a pinhole camera model. If you need to stabilize an errors between measurements use a kalman filter.
+
+17) Implement aligned_alloc() and aligned_free() in the C99 standard.
+
+18) Live code Viola-Jones in CUDA. (lol)
+
+19) Implement voronoi clustering.
+
+20) How do you create concurrent programs that operate on the same data without the use of locks?
+Use barriers and waits to halt/fire exicution. Pthread_wait, and pthread_barrier()
+
+21) How do you average two integers without overflow?
+(a / 2) + (b / 2) + (a & b & 1);
+22) Reverse a bitstring.
+Use a lookup table
+23) "Talk to us about rotation."
+
+24) Project Euler #14.
+
+25) "HoW does loop closure work?" Followup: In a SLAM context, for do you make loop closure work even with very large baselines? (Say, anti-aligned views of the same scene.)
+Use the essential matrix between views then once you recongize that your within a given rotation/translation close to your initial set of images use that to optimize your database of images used when reconstructing the environment. (Unsure about this one)
+
+26) The same connected components problem as OP.
+
+27) Implement non maximal suppression as efficiently as you can.
+
+28) Reverse a linked list in place.
+
+DFS/BFS in the context of connected components
+
+Linear Algebra basics in the context of statistical machine learning and 3D computer vision
+
+Probability basics in the context of state estimation
+
+Dynamic programming (pure programming questions)
+
+Trees/Graphs/Heaps/Stacks/Queues/Linked Lists
+
+Lots of system design questions in the context of - Object Detection, Depth estimation, Semantic Segmentation, Structure from Motion, Optical Flow
+
+"Tougher" system design questions - How would you apply any of the above mentioned concepts to real world, data constrained problems: For example, detect the type of terrain you're traveling on, segment out wires in a room
+
+Calculus/Optimization basics - in the context of deep learning and machine learning
+
+Deep Learning questions - Regularization techniques, receptive fields (compute), architectures, effect of different layers/kernel sizes
+
+State Estimation questions - Kalman Filtering vs Extended vs Unscented vs Particle
+
+Why is bilinear interpolation not suitable for resizing depth images?
+
+
+
+
